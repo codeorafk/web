@@ -1,30 +1,39 @@
 <?php 
-    session_start();
-    include_once "config.php";
+    include('../config/constants.php');
     $id = mysqli_real_escape_string($conn, $_POST['id']);
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $year = mysqli_real_escape_string($conn, $_POST['year']);
+    $title = mysqli_real_escape_string($conn, $_POST['name']);
+    $featured = mysqli_real_escape_string($conn, $_POST['featured']);
+    $active = mysqli_real_escape_string($conn, $_POST['active']);
 
-    if(!empty($id) && !empty($name) && !empty($year)){
-        $pattern1 = "/^[0-9]+$/i";
-        if(preg_match($pattern1, $id) && strlen($name) >= 1 && strlen($name) <= 40 && preg_match($pattern1, $year) && $year >= 0 && $year <= 2021){
-            $sql = mysqli_query($conn, "SELECT id FROM cars WHERE id='{$id}'");
-            if(mysqli_num_rows($sql) > 0){
-                echo "$id - this id already exist!";
-            }else{
-                $random_id = rand(time(), 1000000);
-                $sql2 = mysqli_query($conn, "INSERT INTO cars (id, name, year) VALUES ({$id}, '{$name}', '{$year}')");
-                if($sql2){
-                    echo "success";
-                }else{
-                    echo "Something is wrong";
-                }
-            }
-        }else{
-            echo "Input form is wrong";
-        }
-    }else{
-        echo "All input field are required!";
+    if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != ""){
+        $image_name = $_FILES['image']['name'];
+
+        $ext = end(explode('.', $_FILES['image']['tmp_name']));
+
+        //Rename the Image
+        $image_name = "Food_Category_".rand(000, 999).'.'.$ext; // e.g. Food_Category_834.jpg
+        
+
+        $source_path = $_FILES['image']['tmp_name'];
+
+        $destination_path = "../public/images/category/".$image_name;
+
+        //Finally Upload the Image
+        $upload = move_uploaded_file($source_path, $destination_path);
+    }
+    else
+        $image_name = "Food_Category_77.jpg";
+    //Execute the Query
+    $res2 = mysqli_query($conn, "INSERT INTO tbl_category SET title = '$title', image_name = '$image_name', featured = '$featured', active = '$active', id = '$id'");
+    if($res2==true)
+    {
+        //Category Updated
+        echo "Category insert Successfully" ;
+    }
+    else
+    {
+        //failed to update category
+        echo "Failed to insert Category" ;
     }
 ?>
 

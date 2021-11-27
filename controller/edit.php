@@ -4,7 +4,6 @@
     $title = mysqli_real_escape_string($conn, $_POST['name']);
     $featured = mysqli_real_escape_string($conn, $_POST['featured']);
     $active = mysqli_real_escape_string($conn, $_POST['active']);
-    echo $id.$title.$featured.$active;
 
     // if(!empty($id) && !empty($name) && !empty($year)){
     //     $pattern1 = "/^[0-9]+$/i";
@@ -41,7 +40,7 @@
     else
         $image_name = "bg.jpg";
     //Execute the Query
-    $res2 = mysqli_query($conn, "UPDATE tbl_category SET title = '$title', image_name = '$image_name', featured = '$featured', active = '$active' WHERE id=$id");
+    $res2 = mysqli_query($conn, "UPDATE tbl_category SET title = '$title', image_name = '$image_name', featured = '$featured', active = '$active' WHERE id='$id'");
     if($res2==true)
     {
         //Category Updated

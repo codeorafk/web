@@ -3,11 +3,41 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>Manage Category</h1>
-
+            <div class="error-text">     
+                <!-- "alert alert-danger"    -->
+            </div>
                 <!-- Button to Add Admin -->
-                <a href="<?php echo view; ?>admin/add-category.php" class="btn-primary">Add Category</a>
+                <button class="btn btn-primary btnAddNew">Thêm mới</button>
 
-                <br /><br /><br />
+                <form class="formAddNew d-none" action="" method="POST">
+                    <div class="form-group row">
+                        <label class="col-3 text-right col-form-label" for="idnew">Nhập id:</label>
+                        <input type="text" class="form-control col-7" id="idnew" name="id">
+                    </div>
+                        <div class="form-group row">
+                            <label class="col-3 text-right col-form-label" for="name-new">Nhập Tên:</label>
+                            <input type="text" class="form-control col-7" id="name-new" name="name" >
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3 text-right col-form-label">Nhập Feature:</label>
+                            <input type="radio" name="featured" value="Yes" checked> Yes 
+                            <input type="radio" name="featured" value="No"> No 
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3 text-right col-form-label">Nhập Tên:</label>
+                            <input checked type="radio" name="active" value="Yes"> Yes 
+                            <input type="radio" name="active" value="No"> No 
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3 text-right col-form-label" for="image-new">change image</label>
+                            <input type="file" class="form-control col-7" id="image-new" name="image" hidden>
+                        </div>
+                    <div class="form-group row">
+                    <div class="offset-3">
+                        <button class="btn btn-secondary btnOk">OK</button>
+                    </div>
+                    </div>
+                </form>
 
                 <table class="tbl-full">
                     <tr>

@@ -8,7 +8,7 @@
 
     </body>
 
-    <!-- <script src="<?php echo Ppath;?>js/insert.js"></script> -->
+    <script src="<?php echo Ppath;?>js/insert.js"></script>
     <script src="<?php echo Ppath;?>js/edit.js"></script>
     <script src="<?php echo Ppath;?>js/delete.js"></script>
 </html>
