@@ -135,7 +135,7 @@
                                     <td><?php echo $title; ?></td>
                                     <td>$<?php echo $price; ?></td>
                                     <td>
-                                        <?php  
+                                    <?php  
                                             //CHeck whether we have image or not
                                             if($image_name=="")
                                             {
@@ -146,7 +146,7 @@
                                             {
                                                 //WE Have Image, Display Image
                                                 ?>
-                                                <img src="<?php echo Ppath; ?>images/food/<?php echo $image_name; ?>" width="100px" height="100px">
+                                                <img src="<?php echo Ppath; ?>images/food/<?php echo $image_name; ?>" style = "width: 180px;height: 180px; overflow:hidden">
                                                 <?php
                                             }
                                         ?>
