@@ -1,0 +1,39 @@
+.divider-text {
+    position: relative !important;
+    text-align: center !important;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+.divider-text span {
+    padding: 7px !important;
+    font-size: 12px !important;
+    position: relative !important;   
+    z-index: 2 !important;
+}
+.divider-text:after {
+    content: "" !important;
+    position: absolute !important;
+    width: 100% !important;
+    border-bottom: 1px solid #ddd !important;
+    top: 55% !important;
+    left: 0 !important;
+    z-index: 1 !important;
+}
+
+.btn-facebook {
+    background-color: #405D9D !important;
+    color: #fff !important;
+}
+.btn-twitter {
+    background-color: #42AEEC !important;
+    color: #fff !important;
+    min-width: 100px !important;
+}
+
+
+/* .card-body { */
+        /* margin: auto;  */
+        /* float: none; */
+        
+        /* margin-bottom: 10px; */
+/* } */

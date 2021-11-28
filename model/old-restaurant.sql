@@ -186,3 +186,13 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `tbl_guess` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `username`  varchar(100) NOT NULL,
+  `password`  varchar(255) NOT NULL,
+  'phone_number'  varchar(10)  NOT NULL,
+  'email'         varchar(255)  NOT NULL,
+  'address'         varchar(255)  NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
