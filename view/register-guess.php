@@ -16,6 +16,12 @@
         $raw_password_re = md5($_POST['password_re']);
         $password_re = mysqli_real_escape_string($conn, $raw_password_re);
 
+
+        $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+        $address = mysqli_real_escape_string($conn, $_POST['address']);
+
         //2. SQL to check whether the user with username and password exists or not
         $sql = "SELECT * FROM tbl_guess WHERE username='$username'";
 
@@ -44,7 +50,15 @@
 
         } else
         {
-            header('location:'.view.'order.php');
+            $sqlInsert = "INSERT INTO `tbl_guess` (`id`, `full_name`, `email`, `username`, `address`, `password`, `phone`)
+            VALUES ('$id', '$full_name', '$email', '$username', '$address', '$password', '$phone')";
+            // VALUES ('{$id}', '{$name}', '{$year}')";
+    
+            if ($conn->query($sqlInsert) === TRUE) {
+                echo "Thêm dữ liệu thành công";
+            } else {
+                echo "Error: " . $sqlInsert . "<br>" . $conn->error;
+            }
             // exit;
         }
 
@@ -59,11 +73,15 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../public/js/register-guess.js"></script>
     <!------ Include the above in your HEAD tag ---------->
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="../public/css/register-guess.css" rel="stylesheet">
+    <script>
+
+    </script>
 </head>
 
 <body>
@@ -93,14 +111,14 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
             </div>
-            <input name="full_name" class="form-control" placeholder="Full name" type="text">
+            <input name="full_name" class="form-control" placeholder="Full name" type="text"  onchange="checkMail();" id="full_name">
         </div> <!-- form-group// -->
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
             </div>
-            <input name="email" class="form-control" placeholder="Email address" type="email">
+            <input name="email" class="form-control" placeholder="Email address" type="email" id="email" onchange="checkMail();">
         </div> <!-- form-group// -->
 
         <div class="form-group input-group">
@@ -113,7 +131,7 @@
                 <option value="2">+198</option>
                 <option value="3">+701</option>
             </select> -->
-            <input name="phone" class="form-control" placeholder="Phone number" type="text">
+            <input name="phone" class="form-control" placeholder="Phone number" type="number" onchange="checkMail();" id="phone">
         </div> 
         <!-- form-group// -->
 
@@ -121,28 +139,34 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa-solid fa-map-location-dot"></i> </span>
             </div>
-            <input name="address" class="form-control" placeholder="Address" type="text">
+            <input name="address" class="form-control" placeholder="Address" type="text"  onchange="checkMail();" id="address">
         </div> <!-- form-group// -->
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa-solid fa-user-tag"></i> </span>
             </div>
-            <input name="username" class="form-control" placeholder="User name" type="text">
+            <input name="username" class="form-control" placeholder="User name" type="text" onchange="checkMail();" id="username">
         </div> <!-- form-group// -->
         
-        <div class="form-group input-group">
+        <div class="form-group input-group popup">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
-            <input class="form-control" placeholder="Create password" type="password" name="password">
+            <input class="form-control" placeholder="Create password" type="password" name="password" id="password" onchange="checkPassword();">
+            <!-- <span class="popuptext" id="myPopup">Password must be the same</span> -->
         </div> <!-- form-group// -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
-            <input class="form-control" placeholder="Repeat password" type="password" name="password_re">
+            <input class="form-control" placeholder="Repeat password" type="password" name="password_re" id="password_re" onchange="checkPassword();">
+            <!-- <span class="popuptext" id="myPopup2">Password must be the same</span> -->
         </div> <!-- form-group// -->             
+
+        <p class="d-hidden" style="color: red;" id="warning-same">Password must be the same</p> 
+        <p class="d-hidden" style="color: red;" id="warning-null">Password must not be null</p>  
+        <p class="d-hidden" style="color: red;" id="warning-mail">Please fill all value</p>  
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block" name="submit"> Create Account  </button>
