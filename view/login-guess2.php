@@ -24,7 +24,11 @@ if (isset($_POST['submit'])) {
     if ($count == 1) {
         //User AVailable and Login Success
         $_SESSION['guess'] = $username; //TO check whether the user is logged in or not and logout will unset it
-
+        $row = mysqli_fetch_assoc($res);
+        if($row['status'] == "Unactive"){
+            $resss = mysqli_query($conn,"UPDATE tbl_guess SET status='Active' WHERE username='$username'");
+        }
+        
         //REdirect to HOme Page/Dashboard
         header('location:'.view.'index.php');
     } else {

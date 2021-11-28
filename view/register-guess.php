@@ -50,8 +50,8 @@
 
         } else
         {
-            $sqlInsert = "INSERT INTO `tbl_guess` (`id`, `full_name`, `email`, `username`, `address`, `password`, `phone`)
-            VALUES ('$id', '$full_name', '$email', '$username', '$address', '$password', '$phone')";
+            $sqlInsert = "INSERT INTO `tbl_guess` (`full_name`, `email`, `username`, `address`, `password`, `phone`, `status`)
+            VALUES ('$full_name', '$email', '$username', '$address', '$password', '$phone', 'Unactive' )";
             // VALUES ('{$id}', '{$name}', '{$year}')";
     
             if ($conn->query($sqlInsert) === TRUE) {

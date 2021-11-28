@@ -7,6 +7,11 @@
                 <br /><br /><br />
 
                 <?php 
+                    if(isset($_POST['unban']))
+                    {
+                        $id = mysqli_real_escape_string($conn, $_POST['id']);
+                        $ban = mysqli_query($conn, "UPDATE tbl_guess SET status='Sleeping' WHERE id = '$id'");
+                    }
                     if(isset($_POST['ban']))
                     {
                         $id = mysqli_real_escape_string($conn, $_POST['id']);
@@ -92,13 +97,26 @@
                                             ?>
                                         </td>    
                                         <td>
+                                            <?php
+                                            if($status=="Banning"){
+                                            ?>
                                             <form action="" class="BanForm" method="POST">
                                                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                                                <button name="ban" class="btn btn-primary active" type="submit">Ban</button>
+                                                <button name="unban" class="btn btn-outline-info " type="submit">Ubn</button>
                                             </form>
+                                            <?php
+                                            }else{
+                                            ?>
+                                            <form action="" class="BanForm" method="POST">
+                                                <input type="hidden" name="id" value="<?php echo $id ?>">
+                                                <button name="ban" class="btn btn-outline-info " type="submit">Ban</button>
+                                            </form>
+                                            <?php
+                                            }
+                                            ?>
                                             <form action="" class="RemoveForm" method="POST">
                                                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                                                <button name="del" class="btn btn-primary" type="submit">DeL</button>
+                                                <button name="del" class="btn btn-outline-danger" type="submit">DeL</button>
                                             </form>
                                         </td>
                                     </tr>
