@@ -20,7 +20,7 @@
     <!-- Navbar Section Starts Here -->
     <section class="navbar" style="position:fixed; background-color: #f7f1e3; width: 100%;height: 50px; z-index: 2;">
             <div>
-                <a href="#" title="Logo" >
+                <a href="<?php echo view; ?>" title="Logo" >
                     <img src="<?php echo Ppath; ?>images/logo.png" alt="Restaurant Logo" class="img-responsive" style="height: 40px;">
                 </a>
             </div>

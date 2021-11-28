@@ -45,18 +45,18 @@
                     //Food Available
                     while($row=mysqli_fetch_assoc($res))
                     {
-                        //Get the details
+                        //Get the Values
                         $id = $row['id'];
                         $title = $row['title'];
-                        $price = $row['price'];
                         $description = $row['description'];
+                        $price = $row['price'];
                         $image_name = $row['image_name'];
                         ?>
-
-                        <div class="food-menu-box">
+                        
+                        <div class="food-menu-box d-none" style="height:250px">
                             <div class="food-menu-img">
                                 <?php 
-                                    // Check whether image name is available or not
+                                    //CHeck whether image available or not
                                     if($image_name=="")
                                     {
                                         //Image not Available
@@ -67,8 +67,7 @@
                                         //Image Available
                                         ?>
                                         <img src="<?php echo Ppath; ?>images/food/<?php echo $image_name; ?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
-                                        <?php 
-
+                                        <?php
                                     }
                                 ?>
                                 
@@ -109,11 +108,19 @@
 
             <div class="clearfix"></div>
 
-            
+            <ul id="PageFragment">
+                <?php
+                 echo "<li class='btn btn-primary active' onclick='changePage(1)'>1</li>";
+                for($i = 2; $i <= ceil($count) && $i < 6;$i++){
+                    echo "<li class='btn btn-primary' onclick='changePage(".$i.")'>".$i."</li>";
+                }
+                ?>
+            </ul>
+
 
         </div>
 
     </section>
     <!-- fOOD Menu Section Ends Here -->
-
+    <script src="<?php echo Ppath; ?>js/food.js"></script>
     <?php include('partials-front/footer.php'); ?>

@@ -45,7 +45,7 @@
                         $image_name = $row['image_name'];
                         ?>
                         
-                        <div class="food-menu-box">
+                        <div class="food-menu-box d-none" style="height:250px">
                             <div class="food-menu-img">
                                 <?php 
                                     //CHeck whether image available or not
@@ -96,16 +96,23 @@
             ?>
 
             
-
+            
             
 
             <div class="clearfix"></div>
 
-            
+            <ul id="PageFragment">
+                <?php
+                 echo "<li class='btn btn-primary active' onclick='changePage(1)'>1</li>";
+                for($i = 2; $i <= ceil($count) && $i < 6;$i++){
+                    echo "<li class='btn btn-primary' onclick='changePage(".$i.")'>".$i."</li>";
+                }
+                ?>
+            </ul>
 
         </div>
 
     </section>
     <!-- fOOD Menu Section Ends Here -->
-
+    <script src="<?php echo Ppath; ?>js/food.js"></script>
     <?php include('partials-front/footer.php'); ?>
