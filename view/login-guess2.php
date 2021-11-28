@@ -23,7 +23,6 @@ if (isset($_POST['submit'])) {
 
     if ($count == 1) {
         //User AVailable and Login Success
-        $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
         $_SESSION['guess'] = $username; //TO check whether the user is logged in or not and logout will unset it
 
         //REdirect to HOme Page/Dashboard

@@ -6,6 +6,11 @@
         <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
  
         <?php
+            if(isset($_SESSION['guess'])){
+                $username = mysqli_real_escape_string($conn, $_SESSION['guess']);
+                $shit = mysqli_query($conn, "SELECT * FROM tbl_guess WHERE username ='$username'");
+                $guess = mysqli_fetch_assoc($shit);
+            }
             if(isset($_COOKIE["cart"])) {
                 $total = 0;
                 $cookie_data = stripslashes($_COOKIE["cart"]);
@@ -36,16 +41,16 @@
         <fieldset>
             <legend>Delivery Details</legend>
             <div class="order-label">Full Name</div>
-            <input type="text" name="full-name" placeholder="E.g. Nguyen Tran Quoc Uy" class="input-responsive" value="<?php if(isset($_SESSION['guess'])) { echo $_SESSION['guess']; } ?>" required>
+            <input type="text" name="full-name" placeholder="E.g. Nguyen Tran Quoc Uy" class="input-responsive" value="<?php if(isset($_SESSION['guess'])) { echo $guess['full_name']; } ?>" required>
 
             <div class="order-label">Phone Number</div>
-            <input type="tel" name="contact" placeholder="E.g. 0708xxxxxx" class="input-responsive" required>
+            <input type="tel" name="contact" placeholder="E.g. 0708xxxxxx" class="input-responsive" value="<?php if(isset($_SESSION['guess'])) { echo $guess['phone']; } ?>" required>
 
             <div class="order-label">Email</div>
-            <input type="email" name="email" placeholder="E.g. uy.nguyen.this@hcmut.edu.vn" class="input-responsive" required>
+            <input type="email" name="email" placeholder="E.g. uy.nguyen.this@hcmut.edu.vn" class="input-responsive" value="<?php if(isset($_SESSION['guess'])) { echo $guess['email']; } ?>" required>
 
             <div class="order-label">Address</div>
-            <textarea name="address" rows="10" placeholder="E.g. Street, City, Country" class="input-responsive" required></textarea>
+            <textarea name="address" rows="10" placeholder="E.g. Street, City, Country" class="input-responsive" required><?php if(isset($_SESSION['guess'])) { echo $guess['address']; } ?></textarea>
 
             <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
         </fieldset>   
