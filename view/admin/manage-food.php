@@ -3,46 +3,91 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>Manage Food</h1>
-
+        <div class="food-error-text">     
+                <!-- "alert alert-danger"    -->
+        </div>
         <br /><br />
 
                 <!-- Button to Add Admin -->
-                <a href="<?php echo SITEURL; ?>admin/add-food.php" class="btn-primary">Add Food</a>
+        <button class="btn btn-primary btnAddFood">Thêm mới</button>
 
-                <br /><br /><br />
+        <form class="formAddFood d-none" action="" method="POST">
+            <div class="form-group row">
+                <label class="col-3 text-right col-form-label" for="idnew">Nhập id:</label>
+                <input type="text" class="form-control col-7" id="idnew" name="id">
+            </div>
+                <div class="form-group row">
+                    <label class="col-3 text-right col-form-label" for="name-new">Nhập Tên:</label>
+                    <input type="text" class="form-control col-7" id="name-new" name="name" >
+                </div>
+            <div class="form-group row">
+                <label class="col-3 text-right col-form-label" for="pricenew">Nhập Giá:</label>
+                <input type="number" class="form-control col-7" id="pricenew" name="price">
+            </div>
+            <div class="form-group row">
+                <label class="col-3 text-right col-form-label" for="descriptionnew">Nhập Mô Tả:</label>
+                <input type="text" class="form-control col-7" id="descriptionnew" name="description">
+            </div>
+            <div class="form-group row">
+                <label class="col-3 text-right col-form-label" for="category">Chọn Category:</label>
+                <select name="category" id="category">
+                            <?php 
+                                //Create PHP Code to display categories from Database
+                                //1. CReate SQL to get all active categories from database
+                                $sql = "SELECT * FROM tbl_category WHERE active='Yes'";
+                                
+                                //Executing qUery
+                                $res = mysqli_query($conn, $sql);
 
-                <?php 
-                    if(isset($_SESSION['add']))
-                    {
-                        echo $_SESSION['add'];
-                        unset($_SESSION['add']);
-                    }
+                                //Count Rows to check whether we have categories or not
+                                $count = mysqli_num_rows($res);
 
-                    if(isset($_SESSION['delete']))
-                    {
-                        echo $_SESSION['delete'];
-                        unset($_SESSION['delete']);
-                    }
+                                //IF count is greater than zero, we have categories else we donot have categories
+                                if($count>0)
+                                {
+                                    //WE have categories
+                                    while($row=mysqli_fetch_assoc($res))
+                                    {
+                                        //get the details of categories
+                                        $id = $row['id'];
+                                        $title = $row['title'];
 
-                    if(isset($_SESSION['upload']))
-                    {
-                        echo $_SESSION['upload'];
-                        unset($_SESSION['upload']);
-                    }
+                                        ?>
 
-                    if(isset($_SESSION['unauthorize']))
-                    {
-                        echo $_SESSION['unauthorize'];
-                        unset($_SESSION['unauthorize']);
-                    }
+                                        <option value="<?php echo $id; ?>"><?php echo $title; ?></option>
 
-                    if(isset($_SESSION['update']))
-                    {
-                        echo $_SESSION['update'];
-                        unset($_SESSION['update']);
-                    }
-                
-                ?>
+                                        <?php
+                                    }
+                                }
+                                else
+                                {
+                                    ?>
+                                    <option value="0">No Category Found</option>
+                                    <?php
+                                }
+                            ?>
+                </select>
+            </div>
+                <div class="form-group row">
+                    <label class="col-3 text-right col-form-label">Nhập Feature:</label>
+                    <input type="radio" name="featured" value="Yes" checked> Yes 
+                    <input type="radio" name="featured" value="No"> No 
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 text-right col-form-label">Nhập Tên:</label>
+                    <input checked type="radio" name="active" value="Yes"> Yes 
+                    <input type="radio" name="active" value="No"> No 
+                </div>
+                <div class="form-group row">
+                    <label class="col-3 text-right col-form-label" for="image-new">change image</label>
+                    <input type="file" class="form-control col-7" id="image-new" name="image" hidden>
+                </div>
+            <div class="form-group row">
+            <div class="offset-3">
+                <button class="btn btn-secondary fbtnOk">OK</button>
+            </div>
+            </div>
+        </form>
 
                 <table class="tbl-full">
                     <tr>
@@ -50,6 +95,7 @@
                         <th>Title</th>
                         <th>Price</th>
                         <th>Image</th>
+                        <th>Category ID</th>
                         <th>Featured</th>
                         <th>Active</th>
                         <th>Actions</th>
@@ -79,6 +125,7 @@
                                 $title = $row['title'];
                                 $price = $row['price'];
                                 $image_name = $row['image_name'];
+                                $category_id = $row['category_id'];
                                 $featured = $row['featured'];
                                 $active = $row['active'];
                                 ?>
@@ -99,19 +146,62 @@
                                             {
                                                 //WE Have Image, Display Image
                                                 ?>
-                                                <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" width="100px">
+                                                <img src="<?php echo Ppath; ?>images/food/<?php echo $image_name; ?>" width="100px">
                                                 <?php
                                             }
                                         ?>
                                     </td>
+                                    <td><?php echo $category_id;?></td>
                                     <td><?php echo $featured; ?></td>
                                     <td><?php echo $active; ?></td>
-                                    <td>
-                                        <a href="<?php echo SITEURL; ?>admin/update-food.php?id=<?php echo $id; ?>" class="btn-secondary">Update Food</a>
-                                        <a href="<?php echo SITEURL; ?>admin/delete-food.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Food</a>
+                                    <td class="d-flex">
+                                        <form class="form-delete-food" action="" method="POST">
+                                            <input type="text" value="<?php echo $id; ?>" name ="food_id" hidden>
+                                            <button name="btnDel" type="submit" class="btn-food btn-outline-danger btn-sm">Xóa</button>
+                                        </form>
+                                        <button id="btnEdit<?php echo $id; ?>" onclick="buttonEdit(this.id)"type="click" class="bth-food btn-outline-info btn-sm">Sửa</button>
                                     </td>
                                 </tr>
-
+                                <tr class="btnEdit<?php echo $id; ?> d-none">
+                                        <td colspan="6">
+                                            <form class="form-edit-food" action="" method="POST">
+                                            <div class="form-group row">
+                                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-3 text-right col-form-label" for="name-edit<?php echo $id; ?>">Nhập Tên:</label>
+                                                <input type="text" class="form-control col-7" id="name-edit<?php echo $id; ?>" name="name" value="<?php echo $title; ?>">
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-3 text-right col-form-label" for="name-edit<?php echo $id; ?>">Nhập Giá:</label>
+                                                <input type="number" class="form-control col-7" id="name-edit<?php echo $id; ?>" name="price" value="<?php echo $price; ?>">
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-3 text-right col-form-label" for="category">Chọn Category:</label>
+                                                
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-3 text-right col-form-label" for="name-edit<?php echo $id; ?>">Nhập Feature:</label>
+                                                <input <?php if($featured=="Yes"){echo "checked";} ?> type="radio" name="featured" value="Yes"> Yes 
+                                                <input <?php if($featured=="No"){echo "checked";} ?> type="radio" name="featured" value="No"> No 
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-3 text-right col-form-label" for="name-edit<?php echo $id; ?>">Nhập Tên:</label>
+                                                <input <?php if($active=="Yes"){echo "checked";} ?> type="radio" name="active" value="Yes"> Yes 
+                                                <input <?php if($active=="No"){echo "checked";} ?> type="radio" name="active" value="No"> No 
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-3 text-right col-form-label" for="image-edit<?php echo $id; ?>">Change image</label>
+                                                <input type="file" class="form-control col-7" id="image-edit<?php echo $id; ?>" name="image" hidden>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="offset-3">
+                                                <button class="btn-edit-food btn btn-secondary" style="submit">Sửa</button>
+                                                </div>
+                                            </div>
+                                            </form>
+                                        </td>
+                                        </tr>   
                                 <?php
                             }
                         }
@@ -123,10 +213,11 @@
 
                     ?>
 
-                    
                 </table>
     </div>
     
 </div>
-
+    <script src="<?php echo Ppath;?>js/insertfood.js"></script>
+    <script src="<?php echo Ppath;?>js/edit.js"></script>
+    <script src="<?php echo Ppath;?>js/delete.js"></script>
 <?php include('partials/footer.php'); ?>
