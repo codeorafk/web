@@ -27,10 +27,8 @@
             <h2 class="text-center">Explore Foods</h2>
 
             <?php 
-                //Create SQL Query to Display CAtegories from Database
-                $sql = "SELECT * FROM tbl_category WHERE active='Yes' AND featured='Yes' LIMIT 3";
                 //Execute the Query
-                $res = mysqli_query($conn, $sql);
+                $res = mysqli_query($conn, "SELECT * FROM tbl_category WHERE active='Yes' AND featured='Yes' LIMIT 3");
                 //Count rows to check whether the category is available or not
                 $count = mysqli_num_rows($res);
 
@@ -144,8 +142,15 @@
                                 <?php echo $description; ?>
                             </p>
                             <br>
+                            <form class="orderForm">
+                                <input class="food_id" type="hidden" name="id" value="<?php echo $id ?>">
+                                <input class="food_title" type="hidden" name="title" value="<?php echo $title ?>">
+                                <input class="food_price" type="hidden" name="price" value="<?php echo $price ?>">
+                                <input class="food_image_name" type="hidden" name="image_name" value="<?php echo $image_name ?>">
 
-                            <a href="<?php echo Ppath; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
+                                <button class="btn btn-primary" type="submit" >Order Now</button>
+                                
+                            </form>    
                         </div>
                     </div>
 
