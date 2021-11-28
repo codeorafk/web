@@ -2,7 +2,7 @@
 <?php include('partials-front/menu.php'); ?>
 <section class="food-search">
     <div class="container">
-    <form action="../controller/order.php">  
+    <form action="../controller/order.php" method="POST">  
         <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
  
         <?php
@@ -19,13 +19,13 @@
             </div>
             <div class="food-menu-desc">
                 <h3><?php echo $value["item_title"]; ?></h3>
-                <input type="hidden" name="food" value="<?php echo $value["item_id"]; ?>">
+                <input type="hidden" name="id[]" value="<?php echo $value["item_id"]; ?>">
 
                 <p class="food-price">$<?php echo $value["item_price"]; ?></p>
                 <input type="hidden" name="price" value="<?php echo $value["item_price"]; ?>">
 
                 <div class="order-label">Quantity</div>
-                <input readonly="readonly" type="text" name="qty" class="input-responsive" value="<?php echo $value["item_quantity"]; ?>" required>
+                <input readonly="readonly" type="text" name="quantity[]" class="input-responsive" value="<?php echo $value["item_quantity"]; ?>" required>
             </div>
         </fieldset>
         

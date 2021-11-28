@@ -3,10 +3,10 @@
     session_start();
 
     //Create Constants to Store Non Repeating Values
-    define('SITEURL', 'http://localhost/code_xin/food-order-website-php-main/');
-    define('view','http://localhost/code_xin/food-order-website-php-main/view/');
-    define('Ppath','http://localhost/code_xin/food-order-website-php-main/public/');
-    define('controller','http://localhost/code_xin/food-order-website-php-main/controller/');
+    define('SITEURL', 'http://localhost/');
+    define('view','http://localhost/view/');
+    define('Ppath','http://localhost/public/');
+    define('controller','http://localhost/controller/');
 
     define('LOCALHOST', 'localhost:8111');
     define('DB_USERNAME', 'root');
