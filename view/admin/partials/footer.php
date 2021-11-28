@@ -9,5 +9,5 @@
     </body>
 
 
-    <script src="<?php echo Ppath;?>js/updateOrder.js"></script>
+
 </html>
