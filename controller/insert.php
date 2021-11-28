@@ -22,7 +22,7 @@
         $upload = move_uploaded_file($source_path, $destination_path);
     }
     else
-        $image_name = "Food_Category_77.jpg";
+        $image_name = "default.jpg";
     //Execute the Query
     $res2 = mysqli_query($conn, "INSERT INTO tbl_category SET title = '$title', image_name = '$image_name', featured = '$featured', active = '$active', id = '$id'");
     if($res2==true)

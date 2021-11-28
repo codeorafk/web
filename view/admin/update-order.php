@@ -26,10 +26,8 @@
                 {
                     //Detail Availble
                     $row=mysqli_fetch_assoc($res);
-
-                    $food = $row['food'];
-                    $price = $row['price'];
-                    $qty = $row['qty'];
+                    $order_date = $row['order_date'];
+                    $total = $row['total'];
                     $status = $row['status'];
                     $customer_name = $row['customer_name'];
                     $customer_contact = $row['customer_contact'];
