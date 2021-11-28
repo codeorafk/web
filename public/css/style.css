@@ -22,24 +22,6 @@
     border-radius: 15px;
 }
 
-.text-right{
-    text-align: right;
-}
-.text-center{
-    text-align: center;
-}
-.text-left{
-    text-align: left;
-}
-.text-white{
-    color: white;
-}
-
-.clearfix{
-    clear: both;
-    float: none;
-}
-
 a{
     color: #ff6b81;
     text-decoration: none;
@@ -97,24 +79,22 @@ fieldset{
 
 
 /* CSSS for navbar section */
-
-.logo{
-    width: 10%;
-    float: left;
+.nav{
 }
-.menu{
-    line-height: 60px;
-}
-.menu ul{
+ul {
     list-style-type: none;
+    display: flex;
 }
-
-.menu ul li{
-    display: inline;
-    padding: 1%;
-    font-weight: bold;
+ul li{
+    margin: 0 10px;
 }
-
+#cart{
+    outline: none;
+}
+#cart::-moz-focus-inner{
+    
+    border: 0;
+}
 
 /* CSS for Food SEarch Section */
 
