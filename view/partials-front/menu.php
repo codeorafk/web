@@ -36,6 +36,9 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
+                    <li>
+                        <a href="<?php echo view; ?>login-guess2.php">Login</a>
+                    </li>
                 </ul>
             </div>
 
