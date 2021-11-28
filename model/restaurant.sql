@@ -273,7 +273,8 @@ CREATE TABLE `tbl_guess` (
 --
 
 INSERT INTO `tbl_guess` (`id`, `full_name`, `email`, `username`, `address`, `password`, `phone`) VALUES
-(1, '[value-2]', 'Uy', 'test1@bk.co', 'Uowy', 'alo', '0708035130');
+(1, '[value-2]', 'Uy', 'test1@bk.co', 'Uowy', 'alo', '0708035130'),
+(2, 'Ravenclaw', 'luanhuynh2001@gmail.com','raven','Fr', '21232f297a57a5a743894a0e4a801fc3','0777123456');
 
 --
 -- Indexes for dumped tables

@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form>
+                    <form action="login-guess2.php" method="POST" class="text-center">
                         <div class="d-flex justify-content-center links" style="color: red;   font-weight: bold;">
                             UI only, đừng kick bậy bạ!!
                         </div>
@@ -36,13 +36,13 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" name="" class="form-control input_user" value="" placeholder="username">
+                            <input type="text" name="username" class="form-control input_user" value="" placeholder="username">
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+                            <input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
@@ -95,17 +95,19 @@ if (isset($_POST['submit'])) {
     $count = mysqli_num_rows($res);
 
     if ($count == 1) {
+        echo 'asfasf';
         //User AVailable and Login Success
         $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
         $_SESSION['user'] = $username; //TO check whether the user is logged in or not and logout will unset it
 
         //REdirect to HOme Page/Dashboard
-        header('location:' . view . 'admin/');
+        header('location:'.view.'/index.php');
     } else {
+        echo 'ko dc';
         //User not Available and Login FAil
         $_SESSION['login'] = "<div class='error text-center'>Username or Password did not match.</div>";
         //REdirect to HOme Page/Dashboard
-        header('location:' . view . 'admin/login.php');
+        header('location:'.view.'/login.php');
     }
 }
 
