@@ -188,6 +188,12 @@ ul li{
     margin-bottom: 1%; 
     font-weight: bold;
 }
+#PageFragment li{
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    margin: 0 1px;
+}
 
 
 
