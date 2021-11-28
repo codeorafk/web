@@ -91,7 +91,7 @@
                                                     //Display the Image
                                                     ?>
                                                     
-                                                    <img src="<?php echo Ppath; ?>images/category/<?php echo $image_name; ?>" width="100px" >
+                                                    <img src="<?php echo Ppath; ?>images/category/<?php echo $image_name; ?>" style = "width: 180px;height: 180px; overflow:hidden" >
                                                     
                                                     <?php
                                                 }
