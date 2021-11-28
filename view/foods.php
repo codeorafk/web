@@ -58,7 +58,7 @@
                                     {
                                         //Image Available
                                         ?>
-                                        <img src="<?php echo view; ?>images/food/<?php echo $image_name; ?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
+                                        <img src="<?php echo Ppath; ?>images/food/<?php echo $image_name; ?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
                                         <?php
                                     }
                                 ?>
@@ -73,7 +73,15 @@
                                 </p>
                                 <br>
 
-                                <a href="<?php echo view; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
+                                <form class="orderForm">
+                                    <input class="food_id" type="hidden" name="id" value="<?php echo $id ?>">
+                                    <input class="food_title" type="hidden" name="title" value="<?php echo $title ?>">
+                                    <input class="food_price" type="hidden" name="price" value="<?php echo $price ?>">
+                                    <input class="food_image_name" type="hidden" name="image_name" value="<?php echo $image_name ?>">
+
+                                    <button class="btn btn-primary" type="submit" >Order Now</button>
+                                    
+                                </form> 
                             </div>
                         </div>
 

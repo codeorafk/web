@@ -25,4 +25,6 @@
     <!-- footer Section Ends Here -->
 
 </body>
+
+<script src="<?php echo Ppath; ?>js/cart.js"></script>
 </html>
