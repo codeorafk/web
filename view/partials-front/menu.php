@@ -18,16 +18,20 @@
 
 <body>
     <!-- Navbar Section Starts Here -->
-    <section class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="#" title="Logo">
-                    <img src="<?php echo Ppath; ?>images/logo.png" alt="Restaurant Logo" class="img-responsive">
+    <section class="navbar" style="position:fixed; background-color: #f7f1e3; width: 100%;height: 50px; z-index: 2;">
+            <div>
+                <a href="#" title="Logo" >
+                    <img src="<?php echo Ppath; ?>images/logo.png" alt="Restaurant Logo" class="img-responsive" style="height: 40px;">
                 </a>
             </div>
 
-            <div class="menu text-right">
+            <div>
                 <ul>
+                <li>
+                        <button id="cart" type="button" class="" data-toggle="modal" data-target="#cartModal" style="background-color: #f7f1e3; color: black; border: none"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
+</svg></button>
+                    </li>
                     <li>
                         <a href="<?php echo view; ?>">Home</a>
                     </li>
@@ -46,13 +50,9 @@
                     <li>
                         <a href="<?php echo view; ?>login-guess2.php">Login</a>
                     </li>
-                    <li>
-                        <button id="cart" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal"> cart</button>
-                    </li>
+                    
                 </ul>
             </div>
-           
-            <div class="clearfix"></div>
         </div>
         
     </section>
@@ -70,7 +70,6 @@
                     <div class="appendOrder">
                     <?php
                         if(isset($_COOKIE["cart"])) {
-                            $total = 0;
                             $cookie_data = stripslashes($_COOKIE["cart"]);
                             $cart_data = json_decode($cookie_data, true);
                             foreach($cart_data as $key => $value){    
@@ -141,5 +140,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="space">
+    <br>
+    <br>
     </div>
     <!-- Navbar Section Ends Here -->

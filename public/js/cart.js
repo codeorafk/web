@@ -103,7 +103,7 @@ $('.orderForm').each(function() {
         else{
             let e = `<div class="itemCartremove${id}">
         <div class='d-flex mb-4' style="padding-left:20px;">
-            <img src="http://localhost/code_xin/food-order-website-php-main/public/images/food/${image_path}" style='width:100px;height:100px;border-radius:5px;'>
+            <img src="http://localhost/public/images/food/${image_path}" style='width:100px;height:100px;border-radius:5px;'>
             <div class='w-75 ml-3 mr-3' style='overflow:hidden'>
                 <div><strong>${name}</strong></div>
                 <div class="price"><strong>${price}</strong></div>

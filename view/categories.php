@@ -50,7 +50,6 @@
                                 ?>
                                 
 
-                                <h3 class="float-text text-white"><?php echo $title; ?></h3>
                             </div>
                         </a>
 
