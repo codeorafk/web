@@ -1,5 +1,48 @@
-<?php include('../config/constants.php'); ?>
+<?php include('../config/constants.php'); 
 
+    //CHeck whether the Submit Button is Clicked or NOt
+    if(isset($_POST['submit']))
+    {
+        //Process for Login
+        //1. Get the Data from Login form
+        // $username = $_POST['username'];
+        // $password = md5($_POST['password']);
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        
+        $raw_password = md5($_POST['password']);
+        $password = mysqli_real_escape_string($conn, $raw_password);
+
+        //2. SQL to check whether the user with username and password exists or not
+        $sql = "SELECT * FROM tbl_guess WHERE username='$username";
+
+        //3. Execute the Query
+        $res = mysqli_query($conn, $sql);
+
+        //4. COunt rows to check whether the user exists or not
+        $count = mysqli_num_rows($res);
+
+        if($count==1)
+        {
+            //User AVailable and Login Success
+            // $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
+            // $_SESSION['user'] = $username; //TO check whether the user is logged in or not and logout will unset it
+
+            //REdirect to HOme Page/Dashboard
+            // header('location:'.view.'admin/';
+            header("Location: /index.php");
+            exit;
+
+        }
+        else
+        {
+            header("Location: /order.php");
+            exit;
+        }
+
+
+    }
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -36,19 +79,21 @@
         <span class="bg-light"><b>OR</span>
     </p>
     
-	<form>
+	<form action="register-guess.php" method="POST" class="text-center">
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
             </div>
-            <input name="" class="form-control" placeholder="Full name" type="text">
+            <input name="full_name" class="form-control" placeholder="Full name" type="text">
         </div> <!-- form-group// -->
+
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
             </div>
-            <input name="" class="form-control" placeholder="Email address" type="email">
+            <input name="email" class="form-control" placeholder="Email address" type="email">
         </div> <!-- form-group// -->
+
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
@@ -59,7 +104,7 @@
                 <option value="2">+198</option>
                 <option value="3">+701</option>
             </select> -->
-            <input name="" class="form-control" placeholder="Phone number" type="text">
+            <input name="phone" class="form-control" placeholder="Phone number" type="text">
         </div> 
         <!-- form-group// -->
 
@@ -67,33 +112,33 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa-solid fa-map-location-dot"></i> </span>
             </div>
-            <input name="" class="form-control" placeholder="Address" type="text">
+            <input name="address" class="form-control" placeholder="Address" type="text">
         </div> <!-- form-group// -->
 
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa-solid fa-user-tag"></i> </span>
             </div>
-            <input name="" class="form-control" placeholder="User name" type="text">
+            <input name="username" class="form-control" placeholder="User name" type="text">
         </div> <!-- form-group// -->
         
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
-            <input class="form-control" placeholder="Create password" type="password">
+            <input class="form-control" placeholder="Create password" type="password" name="password">
         </div> <!-- form-group// -->
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
             </div>
-            <input class="form-control" placeholder="Repeat password" type="password">
+            <input class="form-control" placeholder="Repeat password" type="password" name="password_re">
         </div> <!-- form-group// -->             
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
         </div> <!-- form-group// -->      
-        <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+        <p class="text-center">Have an account? <a href="login-guess2.php">Log In</a> </p>                                                                 
     </form>
 </article>  <!-- card-body.// -->
 </div> <!-- card.// -->
@@ -105,48 +150,3 @@
 </body>
 
 </html>
-
-<?php 
-
-    //CHeck whether the Submit Button is Clicked or NOt
-    if(isset($_POST['submit']))
-    {
-        //Process for Login
-        //1. Get the Data from Login form
-        // $username = $_POST['username'];
-        // $password = md5($_POST['password']);
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        
-        $raw_password = md5($_POST['password']);
-        $password = mysqli_real_escape_string($conn, $raw_password);
-
-        //2. SQL to check whether the user with username and password exists or not
-        $sql = "SELECT * FROM tbl_guess WHERE username='$username' AND password='$password'";
-
-        //3. Execute the Query
-        $res = mysqli_query($conn, $sql);
-
-        //4. COunt rows to check whether the user exists or not
-        $count = mysqli_num_rows($res);
-
-        if($count==1)
-        {
-            //User AVailable and Login Success
-            $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
-            $_SESSION['user'] = $username; //TO check whether the user is logged in or not and logout will unset it
-
-            //REdirect to HOme Page/Dashboard
-            header('location:'.view.'admin/');
-        }
-        else
-        {
-            //User not Available and Login FAil
-            $_SESSION['login'] = "<div class='error text-center'>Username or Password did not match.</div>";
-            //REdirect to HOme Page/Dashboard
-            header('location:'.view.'admin/login.php');
-        }
-
-
-    }
-
-?>
