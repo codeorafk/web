@@ -41,11 +41,10 @@
                         <a href="#">Contact</a>
                     </li>
                     <li>
-<<<<<<< HEAD
                         <a href="<?php echo view; ?>login-guess2.php">Login</a>
-=======
+                    </li>
+                    <li>
                         <button id="cart" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal"> cart</button>
->>>>>>> main
                     </li>
                 </ul>
             </div>
