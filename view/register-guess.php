@@ -1,4 +1,5 @@
-<?php include('../config/constants.php'); 
+<?php include('../config/constants.php'); ?>
+<?php
 
     //CHeck whether the Submit Button is Clicked or NOt
     if(isset($_POST['submit']))
@@ -12,8 +13,11 @@
         $raw_password = md5($_POST['password']);
         $password = mysqli_real_escape_string($conn, $raw_password);
 
+        $raw_password_re = md5($_POST['password_re']);
+        $password_re = mysqli_real_escape_string($conn, $raw_password_re);
+
         //2. SQL to check whether the user with username and password exists or not
-        $sql = "SELECT * FROM tbl_guess WHERE username='$username";
+        $sql = "SELECT * FROM tbl_guess WHERE username='$username'";
 
         //3. Execute the Query
         $res = mysqli_query($conn, $sql);
@@ -21,7 +25,7 @@
         //4. COunt rows to check whether the user exists or not
         $count = mysqli_num_rows($res);
 
-        if($count==1)
+        if($count == 1)
         {
             //User AVailable and Login Success
             // $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
@@ -29,14 +33,19 @@
 
             //REdirect to HOme Page/Dashboard
             // header('location:'.view.'admin/';
-            header("Location: /index.php");
-            exit;
+            // header("Location: /index.php");
+            // $_SESSION['login'] = "<div class='error text-center'>Trùng tên.</div>";
+            
+            $message = "Trùng username rồi mai phen";
+            echo "<script type='text/javascript'>alert('$message');</script>";  
+            // header('location:'.view.'register-guess.php');
+            // header('location:'.view.'/register-guess.php');
+            // exit;
 
-        }
-        else
+        } else
         {
-            header("Location: /order.php");
-            exit;
+            header('location:'.view.'order.php');
+            // exit;
         }
 
 
@@ -45,7 +54,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -79,7 +88,7 @@
         <span class="bg-light"><b>OR</span>
     </p>
     
-	<form action="register-guess.php" method="POST" class="text-center">
+	<form action="" method="POST" class="text-center">
         <div class="form-group input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -136,7 +145,7 @@
         </div> <!-- form-group// -->             
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+            <button type="submit" class="btn btn-primary btn-block" name="submit"> Create Account  </button>
         </div> <!-- form-group// -->      
         <p class="text-center">Have an account? <a href="login-guess2.php">Log In</a> </p>                                                                 
     </form>
