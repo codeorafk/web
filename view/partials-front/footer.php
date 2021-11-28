@@ -1,5 +1,5 @@
 <!-- social Section Starts Here -->
-<section class="social">
+<section class="social" style="background-color: #f7f1e3">
         <div class="container text-center">
             <ul>
                 <li>

@@ -9,7 +9,28 @@
     </div>
 
     <div class="container">
-    <div class="row">
+        <div class="row">
+        <?php 
+            $res = mysqli_query($conn, "SELECT * FROM tbl_news");
+            while($row=mysqli_fetch_assoc($res)){
+        ?>
+            
+            <div class="card col-4" style="width: 350px;">
+                <img class="card-img-top" src="<?php echo Ppath.'images/news/'.$row['image_name'];?>" alt="Card image cap"style="width: 350px;">
+                <div class="card-body">
+                    <form class="news-item" action="news-temp.php" method="GET">
+                        <input name="id" type="hidden" value="<?php echo $row['id'];?>">
+                    </form>
+                    <a href="javascript:void(0)"class="card-title" onclick="subForm(this)"> <?php echo $row['title'];?> </a>
+                    <p class="card-text"> <?php echo $row['description'];?> </p>
+                </div>
+            </div>
+            
+        <?php 
+            }
+        ?>
+        </div>
+    <!-- <div class="row">
         <div class="card col-4" style="width: 350px;">
             <img class="card-img-top" src="../public/images/news1.jpg" alt="Card image cap"style="width: 350px;">
             <div class="card-body">
@@ -59,7 +80,7 @@
             <p class="card-text">We've all played an intricate game of Jenga with the groceries inside our refrigerators at one point or another...</p>
             </div>
         </div>
-    </div>    
+    </div>     -->
     </div>
 </section>
 <script>
@@ -71,4 +92,5 @@
         document.cookie =  "num=" + n;
     }
 </script>
+<script src="<?php echo Ppath; ?>js/news.js"></script>
 <?php include('partials-front/footer.php'); ?>
