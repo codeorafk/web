@@ -68,7 +68,7 @@
                     <?php 
                         //Creat SQL Query to Get Total Revenue Generated
                         //Aggregate Function in SQL
-                        $sql4 = "SELECT SUM(total) AS Total FROM tbl_order WHERE status='Delivered'";
+                        $sql4 = "SELECT SUM(total) AS Total FROM tbl_order WHERE status='Completed'";
 
                         //Execute the Query
                         $res4 = mysqli_query($conn, $sql4);

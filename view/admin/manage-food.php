@@ -12,13 +12,13 @@
         <button class="btn btn-primary btnAddFood">Thêm mới</button>
 
         <form class="formAddFood d-none" action="" method="POST">
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label class="col-3 text-right col-form-label" for="idnew">Nhập id:</label>
                 <input type="text" class="form-control col-7" id="idnew" name="id">
-            </div>
+            </div> -->
                 <div class="form-group row">
                     <label class="col-3 text-right col-form-label" for="name-new">Nhập Tên:</label>
-                    <input type="text" class="form-control col-7" id="name-new" name="name" >
+                    <input type="text" class="form-control col-7" id="name-new" name="name">
                 </div>
             <div class="form-group row">
                 <label class="col-3 text-right col-form-label" for="pricenew">Nhập Giá:</label>
@@ -146,7 +146,7 @@
                                             {
                                                 //WE Have Image, Display Image
                                                 ?>
-                                                <img src="<?php echo Ppath; ?>images/food/<?php echo $image_name; ?>" width="100px">
+                                                <img src="<?php echo Ppath; ?>images/food/<?php echo $image_name; ?>" width="100px" height="100px">
                                                 <?php
                                             }
                                         ?>
@@ -164,7 +164,7 @@
                                 </tr>
                                 <tr class="btnEdit<?php echo $id; ?> d-none">
                                         <td colspan="6">
-                                            <form class="form-edit-food" action="" method="POST">
+                                            <form class="form-edit-food" action="" method="POST" enctype='multipart/form-data'>
                                             <div class="form-group row">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                             </div>
@@ -178,7 +178,16 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-3 text-right col-form-label" for="category">Chọn Category:</label>
-                                                
+                                                <select id="category-select" name="category">                                                   
+                                                <?php 
+                                                    $res2 = mysqli_query($conn,"SELECT * FROM tbl_category");
+                                                    while($row2=mysqli_fetch_assoc($res2)){
+                                                ?> 
+                                                    <option value="<?php echo $row2['id'];?>" <?php if($row2['id'] == $category_id) echo 'selected';?>><?php echo $row2['title'];?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                                </select>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-3 text-right col-form-label" for="name-edit<?php echo $id; ?>">Nhập Feature:</label>
