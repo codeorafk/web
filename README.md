@@ -31,3 +31,6 @@ $db_select = mysqli_select_db($conn, DB_NAME) or die(mysqli_error()); //SElectin
 ```
 
 4. Now, Open the project in your browser. It should run perfectly.
+
+5. Photo: 
+https://photos.google.com/share/AF1QipPfln5UPLYBo7RBN_Y8zFGAb6JpWsgarGS8pCx9ZZtR3R3V3dTb5Le15LdeBbWsVw?key=RmxjdzNnemNwUk5VSFNnU3ZUcE5fSW1rNnNaV2F3
