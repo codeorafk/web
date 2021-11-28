@@ -36,7 +36,7 @@
         <fieldset>
             <legend>Delivery Details</legend>
             <div class="order-label">Full Name</div>
-            <input type="text" name="full-name" placeholder="E.g. Nguyen Tran Quoc Uy" class="input-responsive" required>
+            <input type="text" name="full-name" placeholder="E.g. Nguyen Tran Quoc Uy" class="input-responsive" value="<?php if(isset($_SESSION['guess'])) { echo $_SESSION['guess']; } ?>" required>
 
             <div class="order-label">Phone Number</div>
             <input type="tel" name="contact" placeholder="E.g. 0708xxxxxx" class="input-responsive" required>
