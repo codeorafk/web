@@ -1,42 +1,14 @@
-<?php include('partials-front/menu.php'); ?>
+<?php include('partials-front/menu.php'); 
+
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $res = mysqli_query($conn, "SELECT * FROM tbl_news WHERE id = '$id'");
+    $news = mysqli_fetch_assoc($res);
+?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div class="container">
 <?php 
-    $num = $_COOKIE['num'];
-    switch($num){
-        case '1': echo '<div><h1>Taco Bell For Thanksgiving Is A Major Mood-But Is It Open?</h1></div><div class="text-center"><img src="../public/images/news1.jpg"></div><div>Some things in this world are largely disappointing, i.e. the supermarket being sold out of special-edition sweets, ice cream falling on the ground, spaghetti sauce on a white shirt. And Im sorry to trigger that disappointment once again. Get this: Taco Bell, the iconic fast food haven, is CLOSED on Thanksgiving Day. That means if you want to eat delicious tacos and nachos on Thanksgiving, you will have to make them yourself. Yeah, that is a scary thought. Seriously though, we’ll need a minute to gather ourselves. After all, Taco Bell has been there for us through thick and thin, drunk eats and nacho cravings galore. And now, burritos and tacos are deserting us in our moment of need. Because let’s face it: We’ll inevitably overcook the Thanksgiving turkey. Sigh. But everyone deserves a day off, especially the angels who craft Doritos Locos Tacos. Tears aside, not all hope should be lost. While the chain is traditionally closed for Thanksgiving (double check with your local store to see if its hours are different—it is also a good idea to check in re: their most up-to-date COVID-19 safety protocols), the restaurant will open its doors once again starting on Black Friday. You know where to find us on November 26 (...at the Taco Bell drive-thru in case that was not clear)</div>';
-        break;
-        case '2': echo '<div><h1>All The Grocery Stores Open On Thanksgiving Day, Because You Know You are Going To Forget Something</h1></div><div class="text-center"><img src="../public/images/new2.jpg"></div><div>You know what happens to the best-laid plans, right? They go awry. Meaning that Thanksgiving shopping list you triple-checked actually had something missing—and you probably will not notice it until the morning of the holiday. Luckily, a whole slew of supermarket chains have bet on the fact that you will do just that, and they are keeping their doors open for last-minute purchases.
-        Hours are subject to change regionally, especially given the ongoing COVID-19 pandemic, so be sure to call your closest location before running out. Here is a general guide to the grocery stores you can count on come Thanksgiving day—and the ones that will not be open, including some that are closing down for the holiday for the first time in years.
-        P.S. Not up for cooking this year? These fast food joints will stay open on Thanksgiving, and you can sit down for a meal at these restaurants on Turkey Day, too.</div>';
-        break;
-        case '3': echo '<div><h1>Is McDonald’s Open On Thanksgiving?</h1></div><div class="text-center"><img src="../public/images/news3.jpg"></div><div>Maybe you are a pro cook in the kitchen, especially when it comes to food-centric holidays like Thanksgiving. But what about all those people out there who can not roast a turkey? What are they supposed to serve on Turkey Day?! Like, what is the main course? What is the protein? To make it easy for you, here is one option: the McDonald`s Big Mac. It is delicious, it is portable, and it is a classic. Plus, Thanksgiving is basically just a glorified competitive eating contest, and if there is anything I can scarf down without blinking an eye, it is good ole Mickey D`s.
+echo '<div><h1>'.$news['title'].'</h1></div><div class="text-center"><img src="'.Ppath.'images/news/'.$news['image_name'].'"></div><div>'.$news['description'].'</div>';
 
-        Whether you are facing a turkey dinner gone wrong or just looking for some delectable eats, McDonald`s is a Delish-approved Thanksgiving dish. And praise be, because most McDonald`s locations are open for Thanksgiving. This is life changing, you guys. Why did not we think of this sooner?
-        
-        Here is the deal: Hours will vary by location because most restaurants are independently owned and operated, so you will have to give your local store a ring before rollin` up to the drive-through. Plus, with all the COVID-19 safety guidelines in place, you will want to be extra sure your local restaurant has what you need before you leave the house. Please be sure to adhere by all of these guidelines, people!!</div>';
-        break;
-        case '4': echo '<div><h1>Cracker Barrel Has Everything You Need For Thanksgiving Dinner This Year</h1></div><div class="text-center"><img src="../public/images/news4.jpeg"></div><div>Sure, it is true that Thanksgiving is all about food, but that doesn not mean that you have to be cooking everything yourself. For that, we look to restaurants to do the hard work for us. They roast the turkey to juicy perfection. They simmer the gravy to a thick consistency. They cook the stuffing to a crispy top and soft interior. All the things that you may dread, they have got covered.
-
-        Lucky for us, lot of restaurants and grocery stores offer Thanksgiving meals you can pre-order. From Denny is to Costco, Whole Foods to Hello Fresh, all the courses from apps to dessert are done for you. But one of our favorites that comes back year after year is the Heat `n Serve options from Cracker Barrel.
-        
-        First, you have to pick the size you want. The family dinner serves four to six and the feast serves eight to 10. Both come with an oven-roasted turkey breast, cornbread dressing (or stuffing), cranberry relish, sweet yeast rolls, and sweet potato casserole with pecans. The family dinner comes with a choice of one country side, while the feast comes with a choice of two, plus a pecan and pumpkin pie. Some of the side options to pick from are mashed potatoes, green beans, or mac and cheese.
-        
-        You can pre-order the two meals anytime on Cracker Barrel`s website for pickup on 11/22 or 11/23. The feast runs $145, while the family dinner is $95. But of course, you can always throw on some more add-ons like an extra side dish or two, an Apple Pecan Streusel Pie, or more gravy!</div>';
-        break;
-        case '5': echo '<div><h1>Places You Can Buy Thanksgiving Dinner If You Don`t Want To Cook This Year</h1></div><div class="text-center"><img src="../public/images/news5.png"></div><div>According to research conducted by Bob Evans Restaurants, the average American spends seven hours prepping a Thanksgiving meal from scratch. That is crazy talk, especially if you are the go-to family chef every single year. If you want to take a break from all the shopping, prepping, and oven-coordinating this Turkey Day, we won`t judge. There is also the added fact that, given ongoing safety concerns with the pandemic, the festivities may be a bit smaller. Picking up pre-cooked options might just be the most convenient (and safest) thing.
-
-        The following restaurants and grocery stores sell pre-cooked meals that include all the classic fixings, starting with the turkey and going straight through to pie. Most come frozen or cold, so you`ll still have to get creative with your oven space, but heating up dishes is way easier than beginning from scratch. Here are some options that have been available in the past and are likely to come back (or have already been confirmed) this year. We will keep you updated as the ones up in the air fall into place.
-        
-        Looking to cut out any type of prep and just stop by a restaurant instead? Don`t forget to check out all of the restaurants open on Thanksgiving and make your reservations now.</div>';
-        break;
-        case '6': echo '<div><h1>These Are The Best Mini Fridge Deals On Black Friday</h1></div><div class="text-center"><img src="../public/images/new6.jpg"></div><div>We`ve all played an intricate game of Jenga with the groceries inside our refrigerators at one point or another. It is for this reason my family has different fridges for different sorts of groceries—a freezer downstairs for meats, a mini fridge for alcoholic beverages, and so on. Heck, it is no shock even Kim Kardashian has multiple fridges depending on their purpose. It is time for us normal folk to get on board with this, and Black Friday is the perfect time to do so.
-
-        This Black Friday, you should be in the market for a mini fridge, whether you are living in a dorm room (or shopping for someone who is!) or maybe just need some extra space for all of your snacks and beverages. Black Friday is the time to go ahead and make the purchase, because the sales are bound to be incredible.
-        
-        You will want to consider details like size, shape, color, freezer compartments, and shelves depending on your needs before adding one to cart. Brands like Insignia, Frigidaire, and Whirlpool are available at chains such as Target, Walmart, Home Depot, and Best Buy, so you can figure out what you like before the big day.</div>';
-        break;
-    }
 ?>
 <div id ="title"></div>
 <div id ="text"></div>
