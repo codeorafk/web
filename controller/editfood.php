@@ -22,7 +22,7 @@
     //     echo "All input field are required!";
     // }
 
-    if(isset($_FILES['image']['name'])){
+    if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != ""){
         $image_name = $_FILES['image']['name'];
 
         $ext = end(explode('.', $image_name));
@@ -37,20 +37,33 @@
 
         //Finally Upload the Image
         $upload = move_uploaded_file($source_path, $destination_path);
+        $res2 = mysqli_query($conn, "UPDATE tbl_food SET title = '$title', price = '$price', image_name = '$image_name',category_id='$category', featured = '$featured', active = '$active' WHERE id=$id");
+        if($res2==true)
+        {
+            //Category Updated
+            echo "Food Updated Successfully" ;
+        }
+        else
+        {
+            //failed to update category
+            echo "Failed to Update Food" ;
+        }
     }
     else
-        $image_name = "stock.jpg";
+    {
+        // $image_name = "default.jpg";
     //Execute the Query
-    $res2 = mysqli_query($conn, "UPDATE tbl_food SET title = '$title', price = '$price', image_name = '$image_name',category_id='$category', featured = '$featured', active = '$active' WHERE id=$id");
-    if($res2==true)
-    {
-        //Category Updated
-        echo "Food Updated Successfully" ;
-    }
-    else
-    {
-        //failed to update category
-        echo "Failed to Update Food" ;
+        $res2 = mysqli_query($conn, "UPDATE tbl_food SET title = '$title', price = '$price',category_id='$category', featured = '$featured', active = '$active' WHERE id=$id");
+        if($res2==true)
+        {
+            //Category Updated
+            echo "Food Updated Successfully" ;
+        }
+        else
+        {
+            //failed to update category
+            echo "Failed to Update Food" ;
+        }
     }
 ?>
 

@@ -10,10 +10,10 @@
                 <button class="btn btn-primary btnAddNew">Thêm mới</button>
 
                 <form class="formAddNew d-none" action="" method="POST">
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label class="col-3 text-right col-form-label" for="idnew">Nhập id:</label>
                         <input type="text" class="form-control col-7" id="idnew" name="id">
-                    </div>
+                    </div> -->
                         <div class="form-group row">
                             <label class="col-3 text-right col-form-label" for="name-new">Nhập Tên:</label>
                             <input type="text" class="form-control col-7" id="name-new" name="name" >
@@ -106,14 +106,12 @@
 
                                         <td><?php echo $featured; ?></td>
                                         <td><?php echo $active; ?></td>
-                                        <td>
                                         <td class="d-flex">
                                             <form class="form-delete" action="" method="POST">
                                                 <input type="text" value="<?php echo $id; ?>" name ="food_id" hidden>
                                                 <button name="btnDel" type="submit" class="btn btn-outline-danger btn-sm">Xóa</button>
                                             </form>
                                                 <button id="btnEdit<?php echo $id; ?>" onclick="buttonEdit(this.id)"type="click" class="btn btn-outline-info btn-sm">Sửa</button>
-                                            </td>
                                         </td>
                                     </tr>
                                     <tr class="btnEdit<?php echo $id; ?> d-none">

@@ -22,7 +22,7 @@ continueBtn.onclick = ()=>{
                 errorText.classList.add("alert");
                 errorText.classList.add("alert-danger");
                 data = document.getElementsByClassName("food-error-text")[0].innerText;
-                if(data == "Category insert Successfully"){
+                if(data == "Food insert Successfully"){
                     location.reload();
                 }else{
                     

@@ -42,6 +42,9 @@
                         <a href="<?php echo view; ?>foods.php">Foods</a>
                     </li>
                     <li>
+                        <a href="<?php echo view; ?>news.php">New</a>
+                    </li>
+                    <li>
                         <a href="#">Contact</a>
                     </li>
                     <li>

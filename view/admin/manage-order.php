@@ -118,7 +118,7 @@
                                                             <img src="<?php echo Ppath ?>images/food/<?php echo $food['image_name'];?>" style='width:100px;height:100px;border-radius:5px;'>
                                                             <div class='w-75 ml-3 mr-3' style='overflow:hidden'>
                                                                 <div><strong><?php echo $food["title"];?></strong></div>
-                                                                <div class="price"><strong><?php echo $food["price"];?></strong></div>
+                                                                <div class="price"><strong>$ <?php echo $food["price"];?></strong></div>
                                                             </div>
                                                             <div class='w-25 mr-3 d-flex align-items-center justify-content-center'>
                                                                 <div class="input-group" style='width:120px'>
