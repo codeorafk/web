@@ -115,7 +115,7 @@
                     $image_name = $row['image_name'];
                     ?>
 
-                    <div class="food-menu-box">
+                    <div class="food-menu-box" style="height:250px">
                         <div class="food-menu-img">
                             <?php 
                                 //Check whether image available or not
