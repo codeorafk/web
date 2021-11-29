@@ -88,8 +88,8 @@
             </div>
             </div>
         </form>
-
-                <table class="tbl-full">
+            <div class="table-reponsive-xl">                   
+                <table class="table">
                     <tr>
                         <th>S.N.</th>
                         <th>Title</th>
@@ -223,6 +223,7 @@
                     ?>
 
                 </table>
+            </div> 
     </div>
     <ul id="PageFragment">
         <?php
