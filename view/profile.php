@@ -100,6 +100,56 @@
         }
     }  
 
+    if(isset($_POST['submit']))
+    {
+        //Process for Login
+        //1. Get the Data from Login form
+        // $username = $_POST['username'];
+        // $password = md5($_POST['password']);
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        
+        $raw_password = md5($_POST['password']);
+        $password = mysqli_real_escape_string($conn, $raw_password);
+
+        $raw_password_re = md5($_POST['password_re']);
+        $password_re = mysqli_real_escape_string($conn, $raw_password_re);
+
+
+        $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+        $address = mysqli_real_escape_string($conn, $_POST['address']);
+
+        //2. SQL to check whether the user with username and password exists or not
+        $sql = "SELECT * FROM tbl_guess WHERE username='$username'";
+
+        //3. Execute the Query
+        $res = mysqli_query($conn, $sql);
+
+        //4. COunt rows to check whether the user exists or not
+        $count = mysqli_num_rows($res);
+
+        if(false)
+        {
+            
+            $message = "Trùng username rồi mai phen";
+            echo "<script type='text/javascript'>alert('$message');</script>";  
+
+        } else
+        {
+            $sqlInsert = "UPDATE tbl_guess SET (`full_name`, `email`, `username`, `address`, `password`, `phone`, `status`)
+            VALUES ('$full_name', '$email', '$username', '$address', '$password', '$phone', 'Unactive' )";
+            // VALUES ('{$id}', '{$name}', '{$year}')";
+    
+            if ($conn->query($sqlInsert) === TRUE) {
+                echo "Thêm dữ liệu thành công";
+            } else {
+                echo "Error: " . $sqlInsert . "<br>" . $conn->error;
+            }
+            // exit;
+        }
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -223,7 +273,7 @@
                                     <label for="username">
                                         <h4>User name</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="User name" title="enter username." value="<?php
+                                    <input readonly="readonly" type="text" class="form-control" name="username" id="username" placeholder="User name" title="enter username." value="<?php
                                         echo $customer_username;
                                     ?>">
                                 </div>
@@ -278,7 +328,7 @@
                                     <label for="password2">
                                         <h4>Verify</h4>
                                     </label>
-                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password again" title="enter your password2.">
+                                    <input type="password" class="form-control" name="password_re" id="password_re" placeholder="password again" title="enter your password2.">
                                 </div>
                             </div>
                             <div class="form-group">
