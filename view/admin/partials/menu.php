@@ -19,7 +19,7 @@
     <body>
         <!-- Menu Section Starts -->
         <div class="menu text-center">
-            <div class="wrapper">
+            <div class="wrapper"  style="position:fixed; background-color: #f7f1e3; width: 100%;height: 50px; z-index: 2;">
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="manage-admin.php">Admin</a></li>

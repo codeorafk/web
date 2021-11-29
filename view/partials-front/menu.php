@@ -78,10 +78,11 @@
             <!-- Modal content-->
             <div class="modal-content" style="width: 80%; margin: auto; margin-top: 50px;">
                 <div class="modal-header">
+                    <p>Your Cart</p>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>your cart</p>
+                    
                     <!-- <form action=""> -->
                     <div class="appendOrder">
                     <?php

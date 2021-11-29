@@ -56,7 +56,7 @@
                                     {
                                         //Image Available
                                         ?>
-                                        <img src="<?php echo Ppath; ?>images/category/<?php echo $image_name; ?>" alt="Pizza" class="img-responsive img-curve">
+                                        <img src="<?php echo Ppath; ?>images/category/<?php echo $image_name; ?>" alt="Pizza" class="img-responsive img-curve" width="310" height="390">
                                         <?php
                                     }
                                 ?>
@@ -116,7 +116,7 @@
                     ?>
 
                     <div class="food-menu-box" style="height:250px">
-                        <div class="food-menu-img">
+                        <div class="food-menu-img" >
                             <?php 
                                 //Check whether image available or not
                                 if($image_name=="")
