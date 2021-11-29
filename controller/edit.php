@@ -20,7 +20,7 @@
     //     echo "All input field are required!";
     // }
 
-    if(isset($_FILES['image']['name'])){
+    if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != ""){
         $image_name = $_FILES['image']['name'];
 
         $ext = end(explode('.', $image_name));
@@ -63,6 +63,8 @@
             }
     }
     //Execute the Query
-    
+    if($active == "No"){
+        $res3 = mysqli_query($conn, "UPDATE tbl_food SET active = '$active' WHERE category_id='$id'");
+    }
 ?>
 

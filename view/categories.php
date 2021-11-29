@@ -44,7 +44,7 @@
                                     {
                                         //Image Available
                                         ?>
-                                        <img src="<?php echo Ppath; ?>images/category/<?php echo $image_name; ?>" alt="Pizza" class="img-responsive img-curve">
+                                        <img src="<?php echo Ppath; ?>images/category/<?php echo $image_name; ?>" alt="Pizza" class="img-responsive img-curve" width="310" height="390">
                                         <?php
                                     }
                                 ?>

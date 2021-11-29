@@ -24,7 +24,7 @@
                             <input type="radio" name="featured" value="No"> No 
                         </div>
                         <div class="form-group row">
-                            <label class="col-3 text-right col-form-label">Nhập Tên:</label>
+                            <label class="col-3 text-right col-form-label">Active:</label>
                             <input checked type="radio" name="active" value="Yes"> Yes 
                             <input type="radio" name="active" value="No"> No 
                         </div>
@@ -78,7 +78,7 @@
 
                                 ?>
 
-                                    <tr>
+                                    <tr class="food-menu-box d-none">
                                         <td><?php echo $sn++; ?>. </td>
                                         <td><?php echo $title; ?></td>
 
@@ -130,7 +130,7 @@
                                                 <input <?php if($featured=="No"){echo "checked";} ?> type="radio" name="featured" value="No"> No 
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-3 text-right col-form-label" for="name-edit<?php echo $id; ?>">Nhập Tên:</label>
+                                                <label class="col-3 text-right col-form-label" for="name-edit<?php echo $id; ?>">Active:</label>
                                                 <input <?php if($active=="Yes"){echo "checked";} ?> type="radio" name="active" value="Yes"> Yes 
                                                 <input <?php if($active=="No"){echo "checked";} ?> type="radio" name="active" value="No"> No 
                                             </div>
@@ -170,8 +170,16 @@
                     
                 </table>
     </div>
-    
+    <ul id="PageFragment">
+        <?php
+            echo "<li class='btn btn-primary active' onclick='changePage(1)'>1</li>";
+        for($i = 2; $i <= ceil($count / 4) && $i < 6;$i++){
+            echo "<li class='btn btn-primary' onclick='changePage(".$i.")'>".$i."</li>";
+        }
+        ?>
+    </ul> 
 </div>
+<script src="<?php echo Ppath;?>js/food.js"></script>
 <script src="<?php echo Ppath;?>js/insert.js"></script>
 <script src="<?php echo Ppath;?>js/edit.js"></script>
 <script src="<?php echo Ppath;?>js/delete.js"></script>
