@@ -71,9 +71,9 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="d-flex justify-content-center form_container">
                     <form action="" method="POST" class="text-center">
-                        <div class="d-flex justify-content-center links" style="color: red;   font-weight: bold;">
+                        <!-- <div class="d-flex justify-content-center links" style="color: red;   font-weight: bold;">
                             UI only, đừng kick bậy bạ!!
-                        </div>
+                        </div> -->
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>

@@ -21,70 +21,7 @@
     $customer_email = $row['email'];
     $customer_address = $row['address'];
     $status = $row['status'];
-    
-    ?>
-        
-        <tr>
-            <td><?php echo $sn++; ?>. </td>
-            <td><?php echo $customer_name; ?></td>
-            <td><?php echo $customer_contact; ?></td>
-            <td><?php echo $customer_email; ?></td>
-            <td><?php echo $customer_address; ?></td>
-            <td>
-                <?php 
-                    // Ordered, On Delivery, Delivered, Cancelled
-
-                    if($status=="Unactive")
-                    {
-                        echo "<label class='status_order'>$status</label>";
-                    }
-                    elseif($status=="Active")
-                    {
-                        echo "<label class='status_order' style='color: green;'>$status</label>";
-                    }
-                    elseif($status=="Sleeping")
-                    {
-                        echo "<label class='status_order' style='color: orange;'>$status</label>";
-                    }
-                    elseif($status=="Banning")
-                    {
-                        echo "<label class='status_order' style='color: red;'>$status</label>";
-                    }
-                    else
-                        echo "<label class='status_order' style='color: black;'>$status</label>";
-                ?>
-            </td>    
-            <td>
-                <?php
-                if($status=="Banning"){
-                ?>
-                <form action="" class="BanForm" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                    <button name="unban" class="btn btn-outline-info " type="submit">Ubn</button>
-                </form>
-                <?php
-                }else{
-                ?>
-                <form action="" class="BanForm" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                    <button name="ban" class="btn btn-outline-info " type="submit">Ban</button>
-                </form>
-                <?php
-                }
-                ?>
-                <form action="" class="RemoveForm" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                    <button name="del" class="btn btn-outline-danger" type="submit">DeL</button>
-                </form>
-            </td>
-        </tr>
-        
-                            
-    <?php  
-    
-    ?>
-        </div></div></div></div>
-    <?php
+    $customer_username = $row['username'];
 
         
 
@@ -183,7 +120,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
-    <title>Bootstrap Example</title>
+    <title>Modify profile</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -193,9 +130,8 @@
 </head>
 
 <body>
-
-    <hr>
-    <div class="container bootstrap snippet">
+    <!-- <div class="container bootstrap snippet"> -->
+    <div class="container">
         <div class="row">
             <div class="col-sm-10">
                 <h1>User name: 
@@ -204,7 +140,7 @@
                     ?>
                 </h1>
             </div>
-            <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
+            <div class="col-sm-2"><a href="index.php" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
         </div>
         <div class="row">
             <div class="col-sm-3">
@@ -212,16 +148,18 @@
 
 
                 <div class="text-center">
+                    <label for="avatar">
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                    <h6>Upload a different photo...</h6>
-                    <input type="file" class="text-center center-block file-upload">
+                    </label>
+                    <!-- <h6>Upload a different photo...</h6> -->
+                    <input type="file" class="text-center center-block file-upload" id="avatar" hidden>
                 </div>
                 </hr><br>
 
 
                 <div class="panel panel-default">
                     <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-                    <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
+                    <div class="panel-body"><a href="https://www.facebook.com/lh.rav/">www.fb.com/lh.rav/</a></div>
                 </div>
 
                 <form action="" method="POST" class="text-center">
@@ -260,9 +198,9 @@
             <!--/col-3-->
             <div class="col-sm-9">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                    <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                    <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Edit your profile</a></li>
+                    <!-- <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
+                    <li><a data-toggle="tab" href="#settings">Menu 2</a></li> -->
                 </ul>
 
 
@@ -271,21 +209,34 @@
                         <hr>
                         <form class="form" action="##" method="post" id="registrationForm">
                             <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="first_name">
-                                        <h4>First name</h4>
+                                <div class="col-xs-12">
+                                    <label for="full_name">
+                                        <h4>Full name</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                                    <input type="text" class="form-control" name="full_name" id="full_name" placeholder="full name" title="enter your full name." value="<?php
+                                        echo $customer_name;
+                                    ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-6">
+                                    <label for="username">
+                                        <h4>User name</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="User name" title="enter username." value="<?php
+                                        echo $customer_username;
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group">
 
                                 <div class="col-xs-6">
-                                    <label for="last_name">
-                                        <h4>Last name</h4>
+                                    <label for="email">
+                                        <h4>Email</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="<?php
+                                        echo $customer_email;
+                                    ?>">
                                 </div>
                             </div>
 
@@ -295,41 +246,28 @@
                                     <label for="phone">
                                         <h4>Phone</h4>
                                     </label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                                    <input type="number" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number." value="<?php
+                                        echo $customer_contact;
+                                    ?>">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="mobile">
-                                        <h4>Mobile</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
 
                                 <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Email</h4>
+                                    <label for="Address">
+                                        <h4>Address</h4>
                                     </label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Location</h4>
-                                    </label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
+                                    <input type="Address" class="form-control" id="Address" placeholder="somewhere" title="enter a location" value="<?php
+                                        echo $customer_address;
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group">
 
                                 <div class="col-xs-6">
                                     <label for="password">
-                                        <h4>Password</h4>
+                                        <h4>New Password</h4>
                                     </label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
                                 </div>
@@ -340,7 +278,7 @@
                                     <label for="password2">
                                         <h4>Verify</h4>
                                     </label>
-                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
+                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password again" title="enter your password2.">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -355,185 +293,6 @@
                         <hr>
 
                     </div>
-                    <!--/tab-pane-->
-                    <div class="tab-pane" id="messages">
-
-                        <h2></h2>
-
-                        <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="first_name">
-                                        <h4>First name</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="last_name">
-                                        <h4>Last name</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="phone">
-                                        <h4>Phone</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="mobile">
-                                        <h4>Mobile</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Email</h4>
-                                    </label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Location</h4>
-                                    </label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password">
-                                        <h4>Password</h4>
-                                    </label>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password2">
-                                        <h4>Verify</h4>
-                                    </label>
-                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <!--/tab-pane-->
-                    <div class="tab-pane" id="settings">
-
-
-                        <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="first_name">
-                                        <h4>First name</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="last_name">
-                                        <h4>Last name</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="phone">
-                                        <h4>Phone</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="mobile">
-                                        <h4>Mobile</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Email</h4>
-                                    </label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>Location</h4>
-                                    </label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password">
-                                        <h4>Password</h4>
-                                    </label>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password2">
-                                        <h4>Verify</h4>
-                                    </label>
-                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                    <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
                 </div>
                 <!--/tab-pane-->
             </div>
