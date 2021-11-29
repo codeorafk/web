@@ -137,12 +137,12 @@
 
         } else
         {
-            $sqlInsert = "UPDATE tbl_guess SET (`full_name`, `email`, `username`, `address`, `password`, `phone`, `status`)
-            VALUES ('$full_name', '$email', '$username', '$address', '$password', '$phone', 'Unactive' )";
+            $sqlInsert = "UPDATE tbl_guess SET (`full_name`, `email`, `username`, `address`, `password`, `phone`)
+            VALUES ('$customer_name', '$customer_email', '$customer_username', '$customer_address', '$password', '$customer_contact',)";
             // VALUES ('{$id}', '{$name}', '{$year}')";
     
             if ($conn->query($sqlInsert) === TRUE) {
-                echo "Thêm dữ liệu thành công";
+                echo "Edit dữ liệu thành công";
             } else {
                 echo "Error: " . $sqlInsert . "<br>" . $conn->error;
             }
@@ -334,7 +334,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <br>
-                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-lg btn-success" type="submit" name="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                                     <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                                 </div>
                             </div>
