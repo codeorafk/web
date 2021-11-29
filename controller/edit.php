@@ -66,5 +66,8 @@
     if($active == "No"){
         $res3 = mysqli_query($conn, "UPDATE tbl_food SET active = '$active' WHERE category_id='$id'");
     }
+    if($active == "Yes"){
+        $res3 = mysqli_query($conn, "UPDATE tbl_food SET active = '$active' WHERE category_id='$id'");
+    }
 ?>
 
