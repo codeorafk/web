@@ -8,7 +8,8 @@
         if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != ""){
             $image_name = $_FILES['image']['name'];
 
-            $ext = end(explode('.', $_FILES['image']['tmp_name']));
+            $tmp = explode('.', $_FILES['image']['tmp_name']);
+            $ext = end($tmp);
 
             //Rename the Image
             $image_name = "Food_Category_".rand(000, 999).'.'.$ext; // e.g. Food_Category_834.jpg

@@ -141,3 +141,13 @@ table button {
 .alert {
     margin-top: 25px;
 }
+#PageFragment{
+    margin-right: 20%;
+    text-align: right;
+}
+#PageFragment li{
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    margin: 0 1px;
+}
