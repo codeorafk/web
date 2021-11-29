@@ -87,9 +87,9 @@
 <body>
 
 <div class="container">
-<div class="d-flex justify-content-center links" style="color: red;   font-weight: bold;">
+<!-- <div class="d-flex justify-content-center links" style="color: red;   font-weight: bold;">
     UI only, đừng kick bậy bạ!!
-</div>
+</div> -->
 <div class="card bg-light" style="max-width: 800px; min-width:600px; margin:auto">
 <!-- <article class="card-body mx-auto" style="max-width: 400px;"> -->
     <!-- ok -> -->
