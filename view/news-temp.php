@@ -57,7 +57,10 @@ if (isset($_POST['commentBtn'])) {
                             $resImg = mysqli_query($conn, "SELECT * FROM image_news where section_id = '$section_id'");
                             while($row2=mysqli_fetch_assoc($resImg)){
                                 echo '<p style="text-align: center; margin: 20px"><div style="text-align: center"><img src="'.Ppath."images/news/".$row2['image_name'].'" style="max-width: 600px; max-height: 600px">';
-                                echo '<form class="form-del-image" action="'.controller.'del-image-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row2['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove image </button></form></div></p>';
+                                if(isset($_SESSION['user'])){
+                                    echo '<form class="form-del-image" action="'.controller.'del-image-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row2['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove image </button></form>';
+                                }
+                                echo '</div></p>';
                             }
                             echo '</div>';
                             if(isset($_SESSION['user'])){
