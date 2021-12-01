@@ -1,51 +1,96 @@
 <?php include('partials-front/menu.php'); ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<style src = "../css/news.css">    
+
+<style>
+    .nho {
+        width: 100%;
+        padding: 3px;
+    }
 </style>
 
-
+<link rel="stylesheet" href="../public/css/news.css">
 <section class="news container-fluid">
     <!-- <div class="container-fluid"> -->
     <div class="row">
         <div class="col-3 menu">
             <!-- <aside class="col-md-3 col-sm-12 "> -->
-            <h2>Category</h2>
+            <!--
             <ul>
                 <li><a href="#">Đàn Guitar</a></li>
                 <li><a href="#">Đàn ukulele</a></li>
                 <li><a href="#">Đàn piano</a></li>
                 <li><a href="#">Phụ kiện</a></li>
                 <li><a href="#">Trống cajon</a></li>
-            </ul>
+            </ul>-->
+            <!--
             <h2>Top news</h2>
             <ul>
                 <li><a href="#">Guitar NT 20</a></li>
                 <li><a href="#">Guitar ET 20 EQ</a></li>
-                
-            </ul>
+
+            </ul> -->
             <!-- </aside> -->
+            <div class="row logo-wrapper d-flex align-items-center" style="padding: 0px 10px;">
+                <h2>Top news</h2>
+            </div>
+            <div class="row" style="padding: 0px 10px;">
+                <?php
+                $res = mysqli_query($conn, "SELECT * FROM tbl_news");
+                while ($row = mysqli_fetch_assoc($res)) {
+                ?>
+                    <div class="card" style="padding:0px;margin: 0px 0px 10px 0px;">
+                        <div class="card-body" style="padding:0px;margin: 0;">
+                            <div class="col-6" style="padding:0px;margin: 0;">
+                                <div class="card-body">
+                                    <img class="card-img-top" src="<?php echo Ppath . 'images/news/' . $row['image_name']; ?>" alt="Card image cap">
+                                </div>
+                            </div>
+
+                            <div class="col-6" style="padding:0px;margin: 0;">
+                                <div class="card-body">
+                                    <a href="javascript:void(0)" class="card-title" onclick="subForm(this)"> <?php echo $row['title']; ?> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php
+                }
+                ?>
+
+            </div>
+
 
         </div>
+
+
+
         <div class="col-9">
-            <div class="logo-wrapper d-flex align-items-center">
-                <h1><a href="">The News</a></h1>
+            <div class="row logo-wrapper d-flex align-items-center" style="padding: 0px 10px;">
+                <h2><a href="">The News</a></h2>
             </div>
             <div class="row">
                 <?php
                 $res = mysqli_query($conn, "SELECT * FROM tbl_news");
                 while ($row = mysqli_fetch_assoc($res)) {
                 ?>
-
-                    <div class="card col-4" style="width: 350px;">
-                        <img class="card-img-top" src="<?php echo Ppath . 'images/news/' . $row['image_name']; ?>" alt="Card image cap" style="width: 350px;">
-                        <div class="card-body">
-                            <form class="news-item" action="news-temp.php" method="GET">
-                                <input name="id" type="hidden" value="<?php echo $row['id']; ?>">
-                            </form>
-                            <a href="javascript:void(0)" class="card-title" onclick="subForm(this)"> <?php echo $row['title']; ?> </a>
-                            <p class="card-text"> <?php echo $row['description']; ?> </p>
+                    <div class="card" style="padding:0px;margin: 0px 10px 10px 10px;">
+                        <div class="card-body" style="padding:0px;margin: 0;">
+                            <div class="col-3">
+                                <img class="card-img-top" src="<?php echo Ppath . 'images/news/' . $row['image_name']; ?>" alt="Card image cap">
+                            </div>
+                            <div class="col-9">
+                                <!-- <div class="card-body"> -->
+                                    <form class="news-item" action="news-temp.php" method="GET">
+                                        <input name="id" type="hidden" value="<?php echo $row['id']; ?>">
+                                    </form>
+                                    <a href="javascript:void(0)" class="card-title" onclick="subForm(this)"> <?php echo $row['title']; ?> </a>
+                                    <p class="card-text"> <?php echo $row['description']; ?> </p>
+                                <!-- </div> -->
+                            </div>
                         </div>
                     </div>
+
 
                 <?php
                 }

@@ -124,28 +124,6 @@
                             }
                         }
                     ?>
-                        <!-- <div class='d-flex mb-4' style="padding-left:20px;">
-                            <img src="<?php echo Ppath ?>images/bg.jpg" style='width:100px;height:100px;border-radius:5px;'>
-                            <div class='w-75 ml-3 mr-3 row' style='overflow:hidden'>
-                                <div><strong>name</strong></div>
-                                <div class="price"><strong>price</strong></div>
-                                <textarea name="descript[]" rows="2" cols="30" placeholder="Note for food"></textarea><br>
-                                <a href="" id="remove-id">Remove</a>
-                            </div>
-                            <div class='w-25 mr-3 d-flex align-items-center justify-content-center'>
-                                <div class="input-group" style='width:120px'>
-                                    <div class="input-group-prepend" style='cursor:pointer' onclick="">
-                                        <span class="input-group-text">-</span>
-                                    </div>
-                                    <input type="text" class="form-control" value='1' id="totalBuy" name="quantity[]">
-                                    <div class="input-group-append" style='cursor:pointer' onclick="">
-                                        <span class="input-group-text">+</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <input type='hidden' value=${id} name="id[]">
-                        </div> -->
-
 
                     </div>
                     <!-- </form>   -->
