@@ -2,91 +2,24 @@
 <?php
     $username = $_SESSION['guess'];
     $sql = "SELECT * FROM tbl_guess WHERE username='$username'";
-    // $sql = "SELECT * FROM tbl_guess ORDER BY id DESC"; // DIsplay the Latest Order at First
-    //Execute Query
     $res = mysqli_query($conn, $sql);
     //Count the Rows
     $count = mysqli_num_rows($res);
-
-    $sn = 1; //Create a Serial Number and set its initail value as 1
-
-    //Order Available
-    // while($row=mysqli_fetch_assoc($res))
     $row=mysqli_fetch_assoc($res);
     
     //Get all the order details
     $id = $row['id'];
-    $customer_name = $row['full_name'];
-    $customer_contact = $row['phone'];
-    $customer_email = $row['email'];
-    $customer_address = $row['address'];
+    $full_name = $row['full_name'];
+    $phone = $row['phone'];
+    $email = $row['email'];
+    $address = $row['address'];
     $status = $row['status'];
-    $customer_username = $row['username'];
+    $username = $row['username'];
 
-        
-
-    function toggleStatus() {
-        global $conn;
-        global $status;
-        $username = $_SESSION['guess'];
-        $sql = "SELECT * FROM tbl_guess WHERE username='$username'";
-        $res = mysqli_query($conn, $sql);
-        //Count the Rows
-        $count = mysqli_num_rows($res);
-        $row=mysqli_fetch_assoc($res);
-        $currStt = $row['status'];
-        if ($currStt == 'Banning') {
-            return "Banning";
-        }
-        if ($currStt == 'Active') {
-            $sql2 = "UPDATE tbl_guess SET status = 'Sleeping' WHERE username='$username'";
-            $res2 = mysqli_query($conn, $sql2);
-            if($res2==true)
-            {
-                //Category Updated
-                // echo "Category Updated Successfully" ;
-            }
-            else
-            {
-                //failed to update category
-                // echo "Failed to Update Category" ;
-            }
-            // $status = 'Sleeping';
-            // header("Location: /profile.php");
-            // header("Refresh:1; url=profile.php");
-            return "Sleeping";
-        }
-        $sql1 = "UPDATE tbl_guess SET status = 'Active' WHERE username='$username'";
-        $res1 = mysqli_query($conn, $sql1);
-        if($res1==true)
-        {
-            //Category Updated
-            // echo "Category Updated Successfully" ;
-        }
-        else
-        {
-            //failed to update category
-            // echo "Failed to Update Category" ;
-        }
-        // $status = 'Active';
-        // header("Location: /profile.php");
-        // header("Refresh:1; url=profile.php");
-        return "Active";
-    }
     if(isset($_POST['submitStt'])) {
-        global $conn;
-        global $status;
-        $username = $_SESSION['guess'];
-        $sql = "SELECT * FROM tbl_guess WHERE username='$username'";
-        $res = mysqli_query($conn, $sql);
-        //Count the Rows
-        $count = mysqli_num_rows($res);
-        $row=mysqli_fetch_assoc($res);
-        $currStt = $row['status'];
-        if ($currStt == 'Banning') {
-            // return;
+        if ($status == 'Banning') {
         }
-        elseif ($currStt == 'Active') {
+        elseif ($status == 'Active') {
             $sql2 = "UPDATE tbl_guess SET status = 'Sleeping' WHERE username='$username'";
             $res2 = mysqli_query($conn, $sql2);
             $status = 'Sleeping';
@@ -120,33 +53,11 @@
         $phone = mysqli_real_escape_string($conn, $_POST['phone']);
         $address = mysqli_real_escape_string($conn, $_POST['address']);
 
-        //2. SQL to check whether the user with username and password exists or not
-        $sql = "SELECT * FROM tbl_guess WHERE username='$username'";
-
-        //3. Execute the Query
-        $res = mysqli_query($conn, $sql);
-
-        //4. COunt rows to check whether the user exists or not
-        $count = mysqli_num_rows($res);
-
-        if(false)
-        {
-            
-            $message = "Trùng username rồi mai phen";
-            echo "<script type='text/javascript'>alert('$message');</script>";  
-
-        } else
-        {
-            $sqlInsert = "UPDATE tbl_guess SET (`full_name`, `email`, `username`, `address`, `password`, `phone`)
-            VALUES ('$customer_name', '$customer_email', '$customer_username', '$customer_address', '$password', '$customer_contact',)";
-            // VALUES ('{$id}', '{$name}', '{$year}')";
-    
-            if ($conn->query($sqlInsert) === TRUE) {
-                echo "Edit dữ liệu thành công";
-            } else {
-                echo "Error: " . $sqlInsert . "<br>" . $conn->error;
-            }
-            // exit;
+        $sqlInsert = "UPDATE tbl_guess SET full_name='$full_name', email='$email', username='$username', address='$address', phone='$phone' WHERE username='$username'";
+        if (mysqli_query($conn, $sqlInsert) === TRUE) {
+            echo "Edit dữ liệu thành công";
+        } else {
+            echo "Error: " . $sqlInsert . "<br>" . $conn->error;
         }
     }
     
@@ -264,7 +175,7 @@
                                         <h4>Full name</h4>
                                     </label>
                                     <input type="text" class="form-control" name="full_name" id="full_name" placeholder="full name" title="enter your full name." value="<?php
-                                        echo $customer_name;
+                                        echo $full_name;
                                     ?>">
                                 </div>
                             </div>
@@ -274,7 +185,7 @@
                                         <h4>User name</h4>
                                     </label>
                                     <input readonly="readonly" type="text" class="form-control" name="username" id="username" placeholder="User name" title="enter username." value="<?php
-                                        echo $customer_username;
+                                        echo $username;
                                     ?>">
                                 </div>
                             </div>
@@ -285,7 +196,7 @@
                                         <h4>Email</h4>
                                     </label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="<?php
-                                        echo $customer_email;
+                                        echo $email;
                                     ?>">
                                 </div>
                             </div>
@@ -297,7 +208,7 @@
                                         <h4>Phone</h4>
                                     </label>
                                     <input type="number" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number." value="<?php
-                                        echo $customer_contact;
+                                        echo $phone;
                                     ?>">
                                 </div>
                             </div>
@@ -308,8 +219,8 @@
                                     <label for="Address">
                                         <h4>Address</h4>
                                     </label>
-                                    <input type="Address" class="form-control" id="Address" placeholder="somewhere" title="enter a location" value="<?php
-                                        echo $customer_address;
+                                    <input name="address" class="form-control" id="Address" placeholder="somewhere" title="enter a location" value="<?php
+                                        echo $address;
                                     ?>">
                                 </div>
                             </div>
