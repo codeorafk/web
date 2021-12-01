@@ -71,7 +71,7 @@ if (isset($_POST['commentBtn'])) {
                             }
                         }
                         if(isset($_SESSION['user'])){
-                        echo '<hr><button class="btn-add-section btn btn-outline-info"> add section </button>';
+                        echo '<hr><button class="btn-add-section btn btn-outline-info"> Add section </button>';
                         echo <<<_luan
                         <form class="form-add-section d-none" action="'.controller.'add-section.php" method="POST">
 
@@ -80,30 +80,27 @@ if (isset($_POST['commentBtn'])) {
 
                         <div class="form-group row">
                         <div class="col-1"></div>
-                        <div> title <input type="text" name="title"></div>
+                        <label class="col-2 col-form-label" for="title">Title</label>
+                        <input type="text" class="form-control col-7" id="title" name="title">
                         </div>
 
 
-                        <div> description<textarea name="description"></textarea></div>
+                        <div class="form-group row">
+                        <div class="col-1"></div>
+                        <label class="col-2 col-form-label" for="description">Description</label>
+                        <textarea name="description" class="form-control col-7"></textarea>
+                        </div>
                         
-                        <div class="form-group row">
-                        <div class="col-1"></div>
-                        <label class="col-2 col-form-label" for="namePn_new">Name of partner:</label>
-                        <input type="text" class="form-control col-7" id="namePn_new" name="namePn_new">
-                        </div>
 
                         <div class="form-group row">
-                        <div class="col-1"></div>
-                        <label class="col-2 col-form-label" for="phone_new">Phone number of partner:</label>
-                        <input type="text" class="form-control col-7" id="phone_new" name="phone_new">
+                        <div class="col-3"></div>
+                        
+                        <button class="btn-add-image btn btn-outline-info form-control col-7"> I'm sure to add this section </button>
+                        
+                        </div>
 
-                        <div class="form-group row">
-                        <div class="col-2 col-form-label"></div>
-                        <div class = col-8 col-form-label>
-                        <button class="btn-add-image btn btn-outline-danger"> I'm sure to add this section </button>
+                        </form>
                         </div>
-                        </div>
-                        </form></div>
                         _luan;
                         }
                     ?>
