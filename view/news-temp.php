@@ -58,20 +58,52 @@ if (isset($_POST['commentBtn'])) {
                             while($row2=mysqli_fetch_assoc($resImg)){
                                 echo '<p style="text-align: center; margin: 20px"><div style="text-align: center"><img src="'.Ppath."images/news/".$row2['image_name'].'" style="max-width: 600px; max-height: 600px">';
                                 if(isset($_SESSION['user'])){
-                                    echo '<form class="form-del-image" action="'.controller.'del-image-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row2['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove image </button></form>';
+                                    echo '<form class="form-del-image" action="'.controller.'del-image-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row2['id'].'"><button class="btn-del-section btn btn-outline-danger" style="margin: 10px;"> Remove this image </button></form>';
                                 }
                                 echo '</div></p>';
                             }
                             echo '</div>';
                             if(isset($_SESSION['user'])){
                                 echo '<div class="admin-area">';
-                                echo '<form class="form-add-image" action="'.controller.'add-image-section.php" method="POST" enctype="multipart/form-data"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row1['id'].'"><label for="image'.$row1['id'].'">Choose Image</label><input id="image'.$row1['id'].'" type="file" name="image" hidden><button class="btn-add-image btn btn-outline-danger"> add Image </button></form>';
-                                echo '<form class="form-del-section" action="'.controller.'del-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row1['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove section </button></form>';
+                                echo '<form class="form-add-image" action="'.controller.'add-image-section.php" method="POST" enctype="multipart/form-data"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row1['id'].'"><label for="image'.$row1['id'].'">Click me to choose Image</label><input id="image'.$row1['id'].'" type="file" name="image" hidden><button class="btn-add-image btn btn-outline-primary" style="margin: 10px;"> Add Image </button></form>';
+                                echo '<form class="form-del-section" action="'.controller.'del-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row1['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove section "'.$row1['title'].'" </button></form>';
                                 echo '</div>';
                             }
                         }
                         echo '<hr><button class="btn-add-section btn btn-outline-info"> add section </button>';
-                        echo '<form class="form-add-section d-none" action="'.controller.'add-section.php" method="POST"><input type="hidden" name="id" value="'.$id.'"><div> title <input type="text" name="title"></div><div> description<textarea name="description"></textarea></div><button class="btn-add-image btn btn-outline-danger"> add section </button></form></div>'
+                        echo <<<_luan
+                        <form class="form-add-section d-none" action="'.controller.'add-section.php" method="POST">
+
+                        <input type="hidden" name="id" value="'.$id.'">
+
+
+                        <div class="form-group row">
+                        <div class="col-1"></div>
+                        <div> title <input type="text" name="title"></div>
+                        </div>
+
+
+                        <div> description<textarea name="description"></textarea></div>
+                        
+                        <div class="form-group row">
+                        <div class="col-1"></div>
+                        <label class="col-2 col-form-label" for="namePn_new">Name of partner:</label>
+                        <input type="text" class="form-control col-7" id="namePn_new" name="namePn_new">
+                        </div>
+
+                        <div class="form-group row">
+                        <div class="col-1"></div>
+                        <label class="col-2 col-form-label" for="phone_new">Phone number of partner:</label>
+                        <input type="text" class="form-control col-7" id="phone_new" name="phone_new">
+
+                        <div class="form-group row">
+                        <div class="col-2 col-form-label"></div>
+                        <div class = col-8>
+                        <button class="btn-add-image btn btn-outline-danger"> I'm sure to add this section </button>
+                        </div>
+                        </div>
+                        </form></div>
+                        _luan
                     ?>
                     
                 <?php 
