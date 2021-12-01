@@ -3,7 +3,7 @@
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     $id = $_POST['id'];
-    if(!empty($title)) { 
+    if(empty($title)) { 
         mysqli_query($conn, "INSERT INTO section SET description = '$description', news_id = '$id'");
     }
     else {
