@@ -17,7 +17,7 @@
                 <li><a href="#">Phụ kiện</a></li>
                 <li><a href="#">Trống cajon</a></li>
             </ul>
-            <h2>Top product</h2>
+            <h2>Top news</h2>
             <ul>
                 <li><a href="#">Guitar NT 20</a></li>
                 <li><a href="#">Guitar ET 20 EQ</a></li>
