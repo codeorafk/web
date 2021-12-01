@@ -5,7 +5,27 @@
         <h1>Manage News</h1>
 
                 <br /><br /><br />
+                <button class="btn btn-primary btnAddNew">Thêm mới</button>
 
+                <form class="formAddNew d-none" action="<?php echo controller; ?>add-news.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group row">
+                            <label class="col-3 text-right col-form-label" for="name-new">Nhập Title:</label>
+                            <input type="text" class="form-control col-7" id="name-new" name="title" >
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3 text-right col-form-label">Nhập Description:</label>
+                            <textarea name="description" class="form-control col-7"></textarea>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label class="text-center col-3 btn btn-primary" for="image-new">choose image</label>
+                            <input type="file" class="form-control col-7" id="image-new" name="image" hidden>
+                        </div>
+                    <div class="form-group row">
+                    <div class="offset-3">
+                        <button class="btn btn-outline-danger btnOk">OK</button>
+                    </div>
+                    </div>
+                </form>
                 <?php 
                     if(isset($_POST['unban']))
                     {
@@ -43,7 +63,7 @@
 
                     <?php 
                         //Get all the orders from database
-                        $sql = "SELECT * FROM tbl_news ORDER BY id DESC"; // DIsplay the Latest Order at First
+                        $sql = "SELECT * FROM tbl_news"; // DIsplay the Latest Order at First
                         //Execute Query
                         $res = mysqli_query($conn, $sql);
                         //Count the Rows
@@ -135,4 +155,5 @@
     t.parentElement.querySelector(".news-item").submit();
 }
 </script>
+<script src="<?php echo Ppath;?>js/insertNews.js"></script>
 <?php include('partials/footer.php'); ?>

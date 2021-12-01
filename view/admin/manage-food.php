@@ -11,7 +11,7 @@
                 <!-- Button to Add Admin -->
         <button class="btn btn-primary btnAddFood">Thêm mới</button>
 
-        <form class="formAddFood d-none" action="" method="POST">
+        <form class="formAddFood d-none" action="" method="POST" enctype="multipart/form-data">
             <!-- <div class="form-group row">
                 <label class="col-3 text-right col-form-label" for="idnew">Nhập id:</label>
                 <input type="text" class="form-control col-7" id="idnew" name="id">
