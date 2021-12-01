@@ -111,10 +111,10 @@ echo '<div><h1>' . $news['title'] . '</h1></div><div class="text-center"><img sr
                                 <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
                             </div>
                         </div>
-                        <div class="bg-light p-2">
+                        <!-- <div class="bg-light p-2">
                             <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
                             <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
-                        </div>
+                        </div> -->
                     </div>
                 <!-- </div> -->
             <!-- </div> -->
