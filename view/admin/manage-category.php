@@ -9,7 +9,7 @@
                 <!-- Button to Add Admin -->
                 <button class="btn btn-primary btnAddNew">Thêm mới</button>
 
-                <form class="formAddNew d-none" action="" method="POST">
+                <form class="formAddNew d-none" action="" method="POST" enctype="multipart/form-data">
                     <!-- <div class="form-group row">
                         <label class="col-3 text-right col-form-label" for="idnew">Nhập id:</label>
                         <input type="text" class="form-control col-7" id="idnew" name="id">
@@ -116,7 +116,7 @@
                                     </tr>
                                     <tr class="btnEdit<?php echo $id; ?> d-none">
                                         <td colspan="6">
-                                            <form class="form-edit" action="" method="POST">
+                                            <form class="form-edit" action="" method="POST" enctype="multipart/form-data">
                                             <div class="form-group row">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                             </div>

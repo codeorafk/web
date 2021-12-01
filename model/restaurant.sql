@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:8111
--- Generation Time: Dec 01, 2021 at 03:55 PM
+-- Generation Time: Dec 01, 2021 at 04:46 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -86,9 +86,6 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `password`) VALUES
-(1, 'Arsenio Leach', 'toduwaxobi', 'f3ed11bbdb94fd9ebdefbaf646ab94d3'),
-(9, 'Sasha Mendez', 'goxemyde', 'f3ed11bbdb94fd9ebdefbaf646ab94d3'),
-(10, 'Vijay Thapa', 'vijaythapa', 'f3ed11bbdb94fd9ebdefbaf646ab94d3'),
 (12, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
@@ -180,8 +177,8 @@ CREATE TABLE `tbl_food` (
 
 INSERT INTO `tbl_food` (`id`, `title`, `description`, `price`, `image_name`, `category_id`, `featured`, `active`) VALUES
 (5, 'Best chicken', 'Best Firewood Pizza in Town.', '6.00', 'Food-Name-943.jpg', 13, 'No', 'Yes'),
-(6, 'Sadeko Momo', 'Best Spicy Momo for Winter', '6.00', 'Food-Name-7387.jpg', 8, 'Yes', 'Yes'),
-(7, 'Mixed Pizza', 'Pizza with chicken, Ham, Buff, Mushroom and Vegetables', '10.00', 'Food-Name-7833.jpg', 4, 'Yes', 'No'),
+(6, 'Sadeko Momo', 'Best Spicy Momo for Winter', '6.00', 'Food-Name-7387.jpg', 6, 'Yes', 'Yes'),
+(7, 'Mixed Pizza', 'Pizza with chicken, Ham, Buff, Mushroom and Vegetables', '10.00', 'Food-Name-7833.jpg', 4, 'Yes', 'Yes'),
 (9, 'chicken wing', 'ngon, giòn, béo', '12.00', 'Food-Name-830.jpg', 13, 'Yes', 'Yes'),
 (24, 'Chicken', 'ngon', '10.00', 'Food_Name_756.tmp', 13, 'Yes', 'Yes'),
 (25, 'Chicken', 'ngon', '10.00', 'Food_Name_331.tmp', 13, 'Yes', 'Yes'),
@@ -282,7 +279,15 @@ INSERT INTO `tbl_food_in_order` (`id`, `food_id`, `order_id`, `quantity`) VALUES
 (55, 24, 23, 3),
 (56, 6, 24, 1),
 (57, 9, 24, 1),
-(58, 6, 25, 2);
+(58, 6, 25, 2),
+(59, 6, 26, 1),
+(60, 9, 26, 1),
+(61, 6, 27, 9),
+(62, 9, 27, 1),
+(63, 25, 27, 1),
+(64, 27, 27, 1),
+(65, 26, 27, 1),
+(66, 24, 27, 1);
 
 -- --------------------------------------------------------
 
@@ -329,7 +334,8 @@ CREATE TABLE `tbl_news` (
 
 INSERT INTO `tbl_news` (`id`, `description`, `title`, `image_name`, `status`) VALUES
 (1, 'Some things in this world are largely disappointing, i.e. the supermarket being sold out of special-edition sweets, ice cream falling on the ground, spaghetti sauce on a white shirt. And Im sorry to trigger that disappointment once again. Get this: Taco Bell, the iconic fast food haven, is CLOSED on Thanksgiving Day. That means if you want to eat delicious tacos and nachos on Thanksgiving, you will have to make them yourself. Yeah, that is a scary thought. Seriously though, we’ll need a minute to gather ourselves. After all, Taco Bell has been there for us through thick and thin, drunk eats and nacho cravings galore. And now, burritos and tacos are deserting us in our moment of need. Because let’s face it: We’ll inevitably overcook the Thanksgiving turkey. Sigh. But everyone deserves a day off, especially the angels who craft Doritos Locos Tacos. Tears aside, not all hope should be lost. While the chain is traditionally closed for Thanksgiving (double check with your local store to see if its hours are different—it is also a good idea to check in re: their most up-to-date COVID-19 safety protocols), the restaurant will open its doors once again starting on Black Friday. You know where to find us on November 26 (...at the Taco Bell drive-thru in case that was not clear)', 'Taco Bell For Thanksgiving Is A Major Mood-But Is It Open?', 'tksgiving.jfif', 'Active'),
-(2, 'You know what happens to the best-laid plans, right? They go awry. Meaning that Thanksgiving shopping list you triple-checked actually had something missing—and you probably will not notice it until the morning of the holiday. Luckily, a whole slew of supermarket chains have bet on the fact that you will do just that, and they are keeping their doors open for last-minute purchases. Hours are subject to change regionally, especially given the ongoing COVID-19 pandemic, so be sure to call your closest location before running out. Here is a general guide to the grocery stores you can count on come Thanksgiving day—and the ones that will not be open, including some that are closing down for the holiday for the first time in years. P.S. Not up for cooking this year? These fast food joints will stay open on Thanksgiving, and you can sit down for a meal at these restaurants on Turkey Day, too.', 'All The Grocery Stores Open On Thanksgiving Day, Because You Know You are Going To Forget Something', 'new2.jpg', 'Active');
+(2, 'You know what happens to the best-laid plans, right? They go awry. Meaning that Thanksgiving shopping list you triple-checked actually had something missing—and you probably will not notice it until the morning of the holiday. Luckily, a whole slew of supermarket chains have bet on the fact that you will do just that, and they are keeping their doors open for last-minute purchases. Hours are subject to change regionally, especially given the ongoing COVID-19 pandemic, so be sure to call your closest location before running out. Here is a general guide to the grocery stores you can count on come Thanksgiving day—and the ones that will not be open, including some that are closing down for the holiday for the first time in years. P.S. Not up for cooking this year? These fast food joints will stay open on Thanksgiving, and you can sit down for a meal at these restaurants on Turkey Day, too.', 'All The Grocery Stores Open On Thanksgiving Day, Because You Know You are Going To Forget Something', 'new2.jpg', 'Active'),
+(6, 'hello world', 'today i feel so good', 'news_797.tmp', 'Active');
 
 -- --------------------------------------------------------
 
@@ -377,7 +383,9 @@ INSERT INTO `tbl_order` (`id`, `total`, `order_date`, `status`, `customer_name`,
 (22, '38.00', '2021-11-28 10:45:21', 'Completed', 'another luu', '0123456789', 'luu@luu.com', '06 Quang Trung P Binh Dinh'),
 (23, '66.00', '2021-11-29 05:12:15', 'Completed', 'another luu', '0123456789', 'luu@luu.com', '06 Quang Trung P Binh Dinh'),
 (24, '18.00', '2021-11-29 08:23:02', 'Completed', 'Nguyen', '0708035130', 'Uy@gmial.com', 'Uowy'),
-(25, '12.00', '2021-11-29 09:06:12', 'Completed', 'another luu', '0123456789', 'luu@luu.com', '06 Quang Trung P Binh Dinh');
+(25, '12.00', '2021-11-29 09:06:12', 'Completed', 'another luu', '0123456789', 'luu@luu.com', '06 Quang Trung P Binh Dinh'),
+(26, '18.00', '2021-12-01 04:38:36', 'Đang xử lí', 'uy1', '0708035130', 'uy.nguyen.this@hcmut.edu.vn', '06 Quang Trung'),
+(27, '106.00', '2021-12-01 04:39:18', 'Đang xử lí', 'uy1', '0708035130', 'uy.nguyen.this@hcmut.edu.vn', '06 Quang Trung');
 
 --
 -- Indexes for dumped tables
@@ -487,7 +495,7 @@ ALTER TABLE `tbl_food`
 -- AUTO_INCREMENT for table `tbl_food_in_order`
 --
 ALTER TABLE `tbl_food_in_order`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `tbl_guess`
@@ -499,13 +507,13 @@ ALTER TABLE `tbl_guess`
 -- AUTO_INCREMENT for table `tbl_news`
 --
 ALTER TABLE `tbl_news`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

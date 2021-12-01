@@ -70,6 +70,7 @@ if (isset($_POST['commentBtn'])) {
                                 echo '</div>';
                             }
                         }
+                        if(isset($_SESSION['user'])){
                         echo '<hr><button class="btn-add-section btn btn-outline-info"> add section </button>';
                         echo <<<_luan
                         <form class="form-add-section d-none" action="'.controller.'add-section.php" method="POST">
@@ -103,7 +104,8 @@ if (isset($_POST['commentBtn'])) {
                         </div>
                         </div>
                         </form></div>
-                        _luan
+                        _luan;
+                        }
                     ?>
                     
                 <?php 
