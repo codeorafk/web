@@ -252,3 +252,8 @@ ul li{
         width: 100%;
     }
 }
+
+.comment-area{
+    height: 300px;
+    overflow-y: auto;
+}
