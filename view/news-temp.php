@@ -32,11 +32,8 @@ if (isset($_POST['commentBtn'])) {
 
 <body>
     <div class="container-fluid">
-        <div class="row wrapper-row pd-page">
-            <nav id="sidebar" class="col-3 side-bar">
-
-            </nav>
-            <div class="col-9 ">
+        <div class="row wrapper-row pd-page" style = "padding: 0px 90px 90px 90px;">
+            <div class="col-12 ">
                 <!-- <div class="content-page"> -->
                 <div class="box-article-heading clearfix">
                     <!-- <div class="background-img">

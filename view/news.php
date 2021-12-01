@@ -1,35 +1,62 @@
-
-   <?php include('partials-front/menu.php'); ?>
+<?php include('partials-front/menu.php'); ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<section class="news">
-    <div class="container">
-      <div class="logo-wrapper d-flex align-items-center">
-        <h1><a href="">The News</a></h1>
-      </div>
+<style src = "../css/news.css">    
+</style>
+
+
+<section class="news container-fluid">
+    <!-- <div class="container-fluid"> -->
+    <div class="row">
+        <div class="col-3 menu">
+            <!-- <aside class="col-md-3 col-sm-12 "> -->
+            <h2>Category</h2>
+            <ul>
+                <li><a href="#">Đàn Guitar</a></li>
+                <li><a href="#">Đàn ukulele</a></li>
+                <li><a href="#">Đàn piano</a></li>
+                <li><a href="#">Phụ kiện</a></li>
+                <li><a href="#">Trống cajon</a></li>
+            </ul>
+            <h2>Top product</h2>
+            <ul>
+                <li><a href="#">Guitar NT 20</a></li>
+                <li><a href="#">Guitar ET 20 EQ</a></li>
+                
+            </ul>
+            <!-- </aside> -->
+
+        </div>
+        <div class="col-9">
+            <div class="logo-wrapper d-flex align-items-center">
+                <h1><a href="">The News</a></h1>
+            </div>
+            <div class="row">
+                <?php
+                $res = mysqli_query($conn, "SELECT * FROM tbl_news");
+                while ($row = mysqli_fetch_assoc($res)) {
+                ?>
+
+                    <div class="card col-4" style="width: 350px;">
+                        <img class="card-img-top" src="<?php echo Ppath . 'images/news/' . $row['image_name']; ?>" alt="Card image cap" style="width: 350px;">
+                        <div class="card-body">
+                            <form class="news-item" action="news-temp.php" method="GET">
+                                <input name="id" type="hidden" value="<?php echo $row['id']; ?>">
+                            </form>
+                            <a href="javascript:void(0)" class="card-title" onclick="subForm(this)"> <?php echo $row['title']; ?> </a>
+                            <p class="card-text"> <?php echo $row['description']; ?> </p>
+                        </div>
+                    </div>
+
+                <?php
+                }
+                ?>
+            </div>
+
+
+        </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-        <?php 
-            $res = mysqli_query($conn, "SELECT * FROM tbl_news");
-            while($row=mysqli_fetch_assoc($res)){
-        ?>
-            
-            <div class="card col-4" style="width: 350px;">
-                <img class="card-img-top" src="<?php echo Ppath.'images/news/'.$row['image_name'];?>" alt="Card image cap"style="width: 350px;">
-                <div class="card-body">
-                    <form class="news-item" action="news-temp.php" method="GET">
-                        <input name="id" type="hidden" value="<?php echo $row['id'];?>">
-                    </form>
-                    <a href="javascript:void(0)"class="card-title" onclick="subForm(this)"> <?php echo $row['title'];?> </a>
-                    <p class="card-text"> <?php echo $row['description'];?> </p>
-                </div>
-            </div>
-            
-        <?php 
-            }
-        ?>
-        </div>
+
     <!-- <div class="row">
         <div class="card col-4" style="width: 350px;">
             <img class="card-img-top" src="../public/images/news1.jpg" alt="Card image cap"style="width: 350px;">
@@ -81,15 +108,15 @@
             </div>
         </div>
     </div>     -->
-    </div>
+    <!-- </div> -->
 </section>
 <script>
-    function func(n){
+    function func(n) {
         var theCookies = document.cookie.split(';');
-        for (var i = 1 ; i <= theCookies.length; i++) {
-            document.cookie = theCookies[i-1].split('=')[0]+'=; Max-Age=-99999999;'; 
+        for (var i = 1; i <= theCookies.length; i++) {
+            document.cookie = theCookies[i - 1].split('=')[0] + '=; Max-Age=-99999999;';
         }
-        document.cookie =  "num=" + n;
+        document.cookie = "num=" + n;
     }
 </script>
 <script src="<?php echo Ppath; ?>js/news.js"></script>

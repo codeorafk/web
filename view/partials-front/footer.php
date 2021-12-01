@@ -1,6 +1,6 @@
 <!-- social Section Starts Here -->
 <section class="social" style="background-color: #f7f1e3">
-        <div class="container text-center">
+        <div class="container-fluid text-center">
             <ul>
                 <li>
                     <a href="#"><img src="https://img.icons8.com/fluent/50/000000/facebook-new.png"/></a>
@@ -18,7 +18,7 @@
 
     <!-- footer Section Starts Here -->
     <section class="footer">
-        <div class="container text-center">
+        <div class="container-fluid text-center">
             <p>All rights reserved. Designed By <a href="#">Rap Xiec Trung Uong</a></p>
         </div>
     </section>
