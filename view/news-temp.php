@@ -56,13 +56,14 @@ if (isset($_POST['commentBtn'])) {
                             $section_id = $row1['id'];
                             $resImg = mysqli_query($conn, "SELECT * FROM image_news where section_id = '$section_id'");
                             while($row2=mysqli_fetch_assoc($resImg)){
-                                echo '<p style="text-align: center; margin: 20px"><img src="'.Ppath."images/news/".$row2['image_name'].'" style="max-width: 600px; max-height: 600px"></p>';
+                                echo '<p style="text-align: center; margin: 20px"><div style="text-align: center"><img src="'.Ppath."images/news/".$row2['image_name'].'" style="max-width: 600px; max-height: 600px">';
+                                echo '<form class="form-del-image" action="'.controller.'del-image-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row2['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove image </button></form></div></p>';
                             }
                             echo '</div>';
                             if(isset($_SESSION['user'])){
                                 echo '<div class="admin-area">';
                                 echo '<form class="form-add-image" action="'.controller.'add-image-section.php" method="POST" enctype="multipart/form-data"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row1['id'].'"><label for="image'.$row1['id'].'">Choose Image</label><input id="image'.$row1['id'].'" type="file" name="image" hidden><button class="btn-add-image btn btn-outline-danger"> add Image </button></form>';
-                                echo '<form class="form-add-image" action="'.controller.'del-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row1['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove section </button></form></form>';
+                                echo '<form class="form-del-section" action="'.controller.'del-section.php" method="POST"><input type="hidden" name="news-id" value="'.$id.'"><input type="hidden" name="id" value="'.$row1['id'].'"><button class="btn-del-section btn btn-outline-danger"> Remove section </button></form>';
                                 echo '</div>';
                             }
                         }
