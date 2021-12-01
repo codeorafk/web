@@ -98,7 +98,7 @@ if (isset($_POST['commentBtn'])) {
 
                         <div class="form-group row">
                         <div class="col-2 col-form-label"></div>
-                        <div class = col-8>
+                        <div class = col-8 col-form-label>
                         <button class="btn-add-image btn btn-outline-danger"> I'm sure to add this section </button>
                         </div>
                         </div>
