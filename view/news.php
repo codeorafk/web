@@ -35,8 +35,9 @@
             </div>
             <div class="row" style="padding: 0px 10px;">
                 <?php
-                $res = mysqli_query($conn, "SELECT * FROM tbl_news");
+                $res = mysqli_query($conn, "SELECT * FROM tbl_news ORDER BY id DESC LIMIT 3");
                 while ($row = mysqli_fetch_assoc($res)) {
+                    if($row['status'] == 'Active'){
                 ?>
                     <div class="card" style="padding:0px;margin: 0px 0px 10px 0px;">
                         <div class="card-body" style="padding:0px;margin: 0;">
@@ -55,6 +56,7 @@
                     </div>
 
                 <?php
+                    }
                 }
                 ?>
 
@@ -73,6 +75,7 @@
                 <?php
                 $res = mysqli_query($conn, "SELECT * FROM tbl_news");
                 while ($row = mysqli_fetch_assoc($res)) {
+                    if($row['status'] == 'Active'){
                 ?>
                     <div class="card" style="padding:0px;margin: 0px 10px 10px 10px;">
                         <div class="card-body" style="padding:0px;margin: 0;">
@@ -93,6 +96,7 @@
 
 
                 <?php
+                    }
                 }
                 ?>
             </div>
